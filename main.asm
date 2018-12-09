@@ -35,6 +35,6 @@
 .word item_brm_strings
 
 .org bottom_right_menu + moveitemid * 8
-.word aMove, mvitem |1
+.word aMove, brm_move |1
 
 .close

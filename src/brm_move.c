@@ -1,6 +1,6 @@
 #include "global.h"
 
-void mvitem(u8 taskid) {
+void brm_move(u8 taskid) {
     struct task* task = &tasks[taskid];
     // struct pokemon* pokemon = &party_player[brm.pokesel1];
 
