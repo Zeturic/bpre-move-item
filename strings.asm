@@ -1,0 +1,2 @@
+aMove:
+    .string "MOVE"
