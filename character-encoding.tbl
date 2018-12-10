@@ -83,5 +83,7 @@ FD03=[buffer2]
 FD04=[buffer3]
 FD01=[player]
 FD06=[rival]
+53=[PK]
+54=[MN]
 F0=:
 /FFFE
