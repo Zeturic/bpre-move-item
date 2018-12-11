@@ -15,3 +15,6 @@ void brm_move(u8 taskid) {
     brm.pokesel2 = brm.pokesel1;
     task->fn = 0x0811FB28 |1;
 }
+
+void callback(u8 taskid) {
+}
