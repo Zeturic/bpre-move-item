@@ -31,7 +31,9 @@ void callback(u8 taskid) {
                 sub_8124258();
             }
         } else if (button_unknown == BTTN_A) {
-            sub_811FBC4(taskid, pokesel);
+            // sub_811FBC4(taskid, pokesel);
+            audio_play(AUDIO_GENERICCLINK);
+            sub_8122E5C(taskid);
         }
     }
 }

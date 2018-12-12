@@ -11,5 +11,6 @@ u8 sub_811FEFC(u8* pokesel);
 void sub_811FD88(u8 taskid, u8* pokesel);
 void sub_811FBC4(u8 taskid, u8* pokesel);
 void sub_8124258();
+void sub_8122E5C(u8 taskid);
 
 void callback(u8 taskid);

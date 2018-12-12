@@ -7,5 +7,6 @@
 .definelabel sub_811FD88, 0x0811FD88
 .definelabel sub_8124258, 0x08124258
 .definelabel sub_811FBC4, 0x0811FBC4
+.definelabel sub_8122E5C, 0x08122E5C
 .definelabel some_other_kind_of_link_test, 0x080BF748
 .definelabel get_pokesel, 0x0811FBA4
