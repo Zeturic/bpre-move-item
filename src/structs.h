@@ -74,3 +74,29 @@ struct packed brmo {
     u8 field_D;
     u16 field_E;
 };
+
+struct fade_ctrl {
+    u16 bg_pal_bitfield;
+
+    u16 obj_pal_bitfield;
+
+    u16 delay_counter : 6;
+    u16 y : 5; // blend coefficient
+    u16 target_y : 5; // target blend coefficient
+
+    u16 blend_color : 15;
+    u16 active : 1;
+
+    u16 multipurpose2 : 6;
+    u16 y_dec : 1; // whether blend coefficient is decreasing
+    u16 buffer_transfer_disabled : 1;
+    u16 mode : 2;
+    u16 should_reset_blend_registers : 1;
+    u16 hardware_fade_finishing : 1;
+
+    u16 software_fade_finishing_counter : 5;
+    u16 software_fade_finishing : 1;
+    u16 obj_palette_toggle : 1;
+    u16 _ : 1;
+    u16 delta_y : 4; // rate of change of blend coefficient
+};
