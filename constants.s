@@ -9,3 +9,4 @@ moveitemid equ 0x12
 .definelabel ptr_brmo2, 0x0203B09C
 .definelabel brm, 0x0203B0A0
 .definelabel tasks, 0x03005090
+.definelabel pal_fade_control, 0x02037AB8

@@ -3,6 +3,7 @@
 
 #include "defines/attributes.h"
 #include "defines/audio.h"
+#include "defines/buttons.h"
 
 #include "structs.h"
 #include "locations.h"
