@@ -37,8 +37,7 @@
 .org bottom_right_menu + moveitemid * 8
 .word aMove, brm_move |1
 
-// id 0x15 is normally unused
-.org msg_mix + 0x15 * 4
+.org msg_mix + MSG_MOVE * 4
 .word aSwitchItemsWithWhichPokemon
 
 .close
