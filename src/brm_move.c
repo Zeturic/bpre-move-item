@@ -23,7 +23,7 @@ void brm_move(u8 taskid) {
         fdecoder(fcode_buffer5, pXIsntHoldingAnything);
         sub_81202F8(fcode_buffer5, 1);
 
-        bgid_mark_for_sync(2);
+        schedule_bg_copy_tilemap_to_vram(2);
         task->fn = sub_8123BF0;
     }
 }
