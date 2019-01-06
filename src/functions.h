@@ -19,6 +19,10 @@ void sub_8123270(u8 taskid);
 u32 pokemon_getnick(struct pokemon* pokemon, u8* dst);
 void fdecoder(u8* dst, u8* src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
+
 void* pokemon_getattr(struct pokemon*, u8);
+void* pokemon_setattr(struct pokemon*, u8, void*);
 
 void callback(u8 taskid);
+
+void bkpt(u32 x);

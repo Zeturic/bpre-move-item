@@ -17,4 +17,6 @@
 .definelabel fdecoder, 0x08008FCC
 .definelabel pokemon_getnick, 0x081202E0
 .definelabel schedule_bg_copy_tilemap_to_vram, 0x080F67A4
+
 .definelabel pokemon_getattr, 0x0803FBE8
+.definelabel pokemon_setattr, 0x0804037C
