@@ -29,6 +29,8 @@ void brm_move(u8 taskid) {
 }
 
 void callback(u8 taskid) {
+    struct task* task = &tasks[taskid];
+
     if (! (pal_fade_control.active || some_other_kind_of_link_test(0))) {
         u8* pokesel = get_pokesel();
         u8 button_unknown = sub_811FEFC(pokesel);
@@ -43,9 +45,7 @@ void callback(u8 taskid) {
                 sub_8124258();
             }
         } else if (button_unknown == BTTN_A) {
-            // sub_811FBC4(taskid, pokesel);
             audio_play(AUDIO_GENERICCLINK);
-            sub_8122E5C(taskid);
         }
     }
 }
