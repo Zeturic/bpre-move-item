@@ -13,7 +13,7 @@ void brm_move(u8 taskid) {
     if (pokemon_getattr(pokemon, REQ_HELDITEM) != ITEM_NONE) {
         brm.field_B = 8;
 
-        choosePokemonStrings(MSG_MOVE);
+        display_pokemon_menu_message(MSG_MOVE);
         sub_811F818(brm.pokesel1, 1);
         brm.pokesel2 = brm.pokesel1;
         task->fn = callback;
