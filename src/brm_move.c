@@ -4,15 +4,28 @@ void brm_move(u8 taskid) {
     struct task* task = &tasks[taskid];
 
     audio_play(AUDIO_GENERICCLINK);
-    brm.field_B = 8;
 
     sub_8121CE4(&ptr_brmo2->field_D);
     sub_8121CE4(&ptr_brmo2->field_C);
 
-    choosePokemonStrings(MSG_MOVE);
-    sub_811F818(brm.pokesel1, 1);
-    brm.pokesel2 = brm.pokesel1;
-    task->fn = callback;
+    struct pokemon* pokemon = &party_player[brm.pokesel1];
+
+    if (pokemon_getattr(pokemon, REQ_HELDITEM) != ITEM_NONE) {
+        brm.field_B = 8;
+
+        choosePokemonStrings(MSG_MOVE);
+        sub_811F818(brm.pokesel1, 1);
+        brm.pokesel2 = brm.pokesel1;
+        task->fn = callback;
+
+    } else {
+        pokemon_getnick(pokemon, fcode_buffer2);
+        fdecoder(fcode_buffer5, pXIsntHoldingAnything);
+        sub_81202F8(fcode_buffer5, 1);
+
+        bgid_mark_for_sync(2);
+        task->fn = sub_8123BF0;
+    }
 }
 
 void callback(u8 taskid) {
