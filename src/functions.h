@@ -15,10 +15,13 @@ void sub_8122E5C(u8 taskid);
 u8 sub_81202F8(u8* str, u8);
 void sub_8123BF0(u8 taskid);
 void sub_8123270(u8 taskid);
+void sub_81231E8(u8 taskid);
+void sub_811F234(u8 taskid);
 
 u32 pokemon_getnick(struct pokemon* pokemon, u8* dst);
 void fdecoder(u8* dst, u8* src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
+void render_party_menu_box(u8 slot);
 
 u32 pokemon_getattr(struct pokemon*, u8);
 void* pokemon_setattr(struct pokemon*, u8, void*);

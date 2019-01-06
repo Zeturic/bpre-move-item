@@ -13,10 +13,13 @@
 .definelabel sub_8123BF0, 0x08123BF0
 .definelabel sub_81202F8, 0x081202F8
 .definelabel sub_8123270, 0x08123270
+.definelabel sub_81231E8, 0x081231E8
+.definelabel sub_811F234, 0x0811F234
 
 .definelabel fdecoder, 0x08008FCC
 .definelabel pokemon_getnick, 0x081202E0
 .definelabel schedule_bg_copy_tilemap_to_vram, 0x080F67A4
+.definelabel render_party_menu_box, 0x0811F124
 
 .definelabel pokemon_getattr, 0x0803FBE8
 .definelabel pokemon_setattr, 0x0804037C

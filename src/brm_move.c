@@ -44,6 +44,14 @@ void callback(u8 taskid) {
             }
         } else if (button_unknown == BTTN_A) {
             audio_play(AUDIO_GENERICCLINK);
+
+            u16 item1 = pokemon_getattr(&party_player[brm.pokesel1], REQ_HELDITEM);
+            u16 item2 = pokemon_getattr(&party_player[brm.pokesel2], REQ_HELDITEM);
+
+            pokemon_setattr(&party_player[brm.pokesel1], REQ_HELDITEM, &item2);
+            pokemon_setattr(&party_player[brm.pokesel2], REQ_HELDITEM, &item1);
+
+            sub_811FD88(taskid, pokesel);
         }
     }
 }
