@@ -56,18 +56,15 @@ struct packed brmo2 {
 };
 
 struct packed brmo {
-    u32 func_c2;
-    u8 field_4;
-    u8 field_5;
-    u8 field_6;
-    u8 field_7;
+    void (*callback)();
+    void (*task)();
     u8 field_8;
     u8 pokesel1;
     u8 pokesel2;
     u8 field_B;
-    u8 field_C;
-    u8 field_D;
-    u16 field_E;
+    u16 item;
+    u16 move;
+    u16 field_10;
 };
 
 struct fade_ctrl {
