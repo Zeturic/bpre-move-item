@@ -37,27 +37,22 @@ struct packed pokemon {
 };
 
 struct packed brmo2 {
-    u8 field_0;
-    u8 field_1;
-    u8 field_2;
-    u8 field_3;
-    u8 field_4;
-    u8 field_5;
-    u8 field_6;
-    u8 field_7;
-    u8 field_8;
-    u8 field_9;
-    u8 field_A;
-    u8 field_B;
-    u8 field_C;
-    u8 field_D;
-    u8 field_E;
+    void (*task)();
+    void (*callback)();
+
+    u32 unk8_0 : 1;
+    u32 unk8_1 : 3;
+    u32 unk8_2 : 7;
+    u32 unk8_3 : 7;
+    u32 unk8_4 : 14;
+
+    u8 field_C[3];
     u8 seq[8];
     u8 cur;
-    u8 unknown[540];
-    u16 field_234;
-    u16 field_236;
-    u8 field_238;
+
+    u16 pal_buffer[0xB0];
+    u8 filler[0xA0];
+    i16 private[16];
 };
 
 struct packed brmo {

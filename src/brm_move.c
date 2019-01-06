@@ -5,8 +5,8 @@ void brm_move(u8 taskid) {
 
     audio_play(AUDIO_GENERICCLINK);
 
-    sub_8121CE4(&ptr_brmo2->field_D);
-    sub_8121CE4(&ptr_brmo2->field_C);
+    sub_8121CE4(&ptr_brmo2->field_C[1]);
+    sub_8121CE4(&ptr_brmo2->field_C[0]);
 
     struct pokemon* pokemon = &party_player[brm.pokesel1];
 
@@ -38,7 +38,7 @@ void callback(u8 taskid) {
             sub_811FD88(taskid, pokesel);
         } else if (2 < button_unknown) {
             // no idea
-            if (button_unknown == 8 && ptr_brmo2->field_8) {
+            if (button_unknown == 8 && ptr_brmo2->unk8_0) {
                 audio_play(AUDIO_GENERICCLINK);
                 sub_8124258();
             }
