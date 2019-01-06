@@ -8,3 +8,8 @@ extern struct task tasks[];
 extern struct brmo brm;
 extern struct brmo2* ptr_brmo2;
 extern struct fade_ctrl pal_fade_control;
+
+extern u8 fcode_buffer2[];
+extern u8 fcode_buffer5[];
+
+extern u8 pXIsntHoldingAnything[];

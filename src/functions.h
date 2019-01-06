@@ -12,5 +12,12 @@ void sub_811FD88(u8 taskid, u8* pokesel);
 void sub_811FBC4(u8 taskid, u8* pokesel);
 void sub_8124258();
 void sub_8122E5C(u8 taskid);
+u8 sub_81202F8(u8* str, u8);
+void sub_8123BF0(u8 taskid);
+
+u32 pokemon_getnick(struct pokemon* pokemon, u8* dst);
+void fdecoder(u8* dst, u8* src);
+void bgid_mark_for_sync(u8 bgid);
+void* pokemon_getattr(struct pokemon*, u8);
 
 void callback(u8 taskid);
