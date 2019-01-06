@@ -11,6 +11,7 @@
 .definelabel some_other_kind_of_link_test, 0x080BF748
 .definelabel get_pokesel, 0x0811FBA4
 .definelabel sub_8123BF0, 0x08123BF0
+.definelabel sub_81202F8, 0x081202F8
 
 .definelabel fdecoder, 0x08008FCC
 .definelabel pokemon_getnick, 0x081202E0
