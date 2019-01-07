@@ -58,7 +58,11 @@ struct packed brmo2 {
 struct packed brmo {
     void (*callback)();
     void (*task)();
-    u8 field_8;
+
+    u8 unk8_0:4;
+    u8 mode:2;
+    u8 unk8_2:2;
+
     u8 pokesel1;
     u8 pokesel2;
     u8 field_B;
