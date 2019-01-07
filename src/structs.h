@@ -97,8 +97,17 @@ struct fade_ctrl {
     u16 delta_y : 4; // rate of change of blend coefficient
 };
 
+struct rodata {
+    void (*fn)(u8, u8, u8, u8, u8, u8);
+    u8 field_4[24];
+    u8 field_1C;
+    u8 field_1D;
+    u8 field_1E;
+    u8 field_1F;
+};
+
 struct packed party_menu_something {
-    void* rodata;
+    struct rodata* rodata;
     u8* field_4;
     u8 windowid;
     u8 field_9;
