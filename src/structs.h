@@ -96,3 +96,14 @@ struct fade_ctrl {
     u16 _ : 1;
     u16 delta_y : 4; // rate of change of blend coefficient
 };
+
+struct packed party_menu_something {
+    void* rodata;
+    u8* field_4;
+    u8 windowid;
+    u8 field_9;
+    u8 field_A;
+    u8 field_B;
+    u8 field_C;
+    u8 filler[3];
+};

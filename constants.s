@@ -10,6 +10,7 @@ moveitemid equ 0x12
 .definelabel brm, 0x0203B0A0
 .definelabel tasks, 0x03005090
 .definelabel pal_fade_control, 0x02037AB8
+.definelabel party_menu_something, 0x0203B0B4
 
 .definelabel party_player, 0x02024284
 

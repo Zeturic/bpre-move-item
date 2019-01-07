@@ -13,3 +13,5 @@ extern u8 fcode_buffer2[];
 extern u8 fcode_buffer5[];
 
 extern u8 pXIsntHoldingAnything[];
+
+extern struct party_menu_something* party_menu_something;
