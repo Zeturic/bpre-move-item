@@ -51,6 +51,16 @@ void callback(u8 taskid) {
             pokemon_setattr(&party_player[brm.pokesel1], REQ_HELDITEM, &item2);
             pokemon_setattr(&party_player[brm.pokesel2], REQ_HELDITEM, &item1);
 
+            sub_81224B4(
+                &party_player[brm.pokesel1],
+                &party_menu_something[brm.pokesel1]
+            );
+
+            sub_81224B4(
+                &party_player[brm.pokesel2],
+                &party_menu_something[brm.pokesel2]
+            );
+
             sub_811FD88(taskid, pokesel);
         }
     }
