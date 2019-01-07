@@ -23,6 +23,7 @@
 .definelabel schedule_bg_copy_tilemap_to_vram, 0x080F67A4
 .definelabel render_party_menu_box, 0x0811F124
 .definelabel init_party_menu, 0x0811EA44
+.definelabel rboxid_print, 0x0812E51C
 
 .definelabel pokemon_getattr, 0x0803FBE8
 .definelabel pokemon_setattr, 0x0804037C

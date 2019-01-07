@@ -25,6 +25,7 @@ void schedule_bg_copy_tilemap_to_vram(u8 bgid);
 void render_party_menu_box(u8 slot);
 void init_party_menu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
 void sub_81224B4(struct pokemon*, struct party_menu_something*);
+void rboxid_print(u8 windowid, u8 fontid, u8 left, u8 top, const u8* color, i8 speed, const u8* str);
 
 u32 pokemon_getattr(struct pokemon*, u8);
 void* pokemon_setattr(struct pokemon*, u8, void*);
