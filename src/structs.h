@@ -110,9 +110,9 @@ struct packed party_menu_something {
     struct rodata* rodata;
     u8* field_4;
     u8 windowid;
-    u8 field_9;
-    u8 field_A;
-    u8 field_B;
-    u8 field_C;
+    u8 party_icon;
+    u8 held_item;
+    u8 poke_ball;
+    u8 status;
     u8 filler[3];
 };
