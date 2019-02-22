@@ -3,15 +3,15 @@
 
 #include "structs.h"
 
-extern struct pokemon party_player[6];
-extern struct task tasks[];
+extern struct Pokemon gPlayerParty[6];
+extern struct Task gTasks[];
 extern struct brmo brm;
-extern struct brmo2* ptr_brmo2;
-extern struct fade_ctrl pal_fade_control;
+extern struct Struct203B09C* gUnknown_0203B09C;
+extern struct PaletteFadeControl gPaletteFade;
 
-extern u8 fcode_buffer2[];
-extern u8 fcode_buffer5[];
+extern u8 gStringVar1[];
+extern u8 gStringVar4[];
 
-extern u8 pXIsntHoldingAnything[];
+extern u8 gText_PkmnNotHolding[];
 
 extern struct party_menu_something* party_menu_something;

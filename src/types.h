@@ -5,13 +5,16 @@ typedef unsigned short u16;
 typedef unsigned long u32;
 typedef unsigned long long u64;
 
-typedef signed char i8;
-typedef signed short i16;
-typedef signed long i32;
-typedef signed long long i64;
+typedef signed char s8;
+typedef signed short s16;
+typedef signed long s32;
+typedef signed long long s64;
 
-typedef u8 bool;
-#define true 1
-#define false 0
+typedef u8  bool8;
+typedef u16 bool16;
+typedef u32 bool32;
+
+#define TRUE  1
+#define FALSE 0
 
 #define NULL 0

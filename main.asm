@@ -1,14 +1,14 @@
 .gba
 
 .arm
-.include "constants.s"
+.include "locations.s"
 
 .thumb
 .include "functions.s"
 
 .loadtable "character-encoding.tbl"
 
-.open "test.gba", 0x08000000
+.open "rom.gba", "test.gba", 0x08000000
 
 .org allocation
 .area allocation_size
@@ -35,7 +35,7 @@
 .word item_brm_strings
 
 .org bottom_right_menu + moveitemid * 8
-.word aMove, brm_move |1
+.word aMove, CursorCb_MoveItem |1
 
 .org msg_mix + MSG_MOVE * 4
 .word aSwitchItemsWithWhichPokemon

@@ -1,16 +1,16 @@
 #include "global.h"
 
-void brm_move(u8 taskid) {
-    struct task* task = &tasks[taskid];
+void CursorCb_MoveItem(u8 taskid) {
+    struct Task* task = &gTasks[taskid];
 
-    audio_play(AUDIO_GENERICCLINK);
+    PlaySE(SE_SELECT);
 
-    sub_8121CE4(&ptr_brmo2->field_C[1]);
-    sub_8121CE4(&ptr_brmo2->field_C[0]);
+    sub_8121CE4(&gUnknown_0203B09C->field_C[1]);
+    sub_8121CE4(&gUnknown_0203B09C->field_C[0]);
 
-    struct pokemon* pokemon = &party_player[brm.pokesel1];
+    struct Pokemon* pokemon = &gPlayerParty[brm.pokesel1];
 
-    if (pokemon_getattr(pokemon, REQ_HELDITEM) != ITEM_NONE) {
+    if (GetMonData(pokemon, MON_DATA_HELD_ITEM) != ITEM_NONE) {
         brm.field_B = 8;
 
         display_pokemon_menu_message(MSG_MOVE);
@@ -19,9 +19,9 @@ void brm_move(u8 taskid) {
         task->fn = callback;
 
     } else {
-        pokemon_getnick(pokemon, fcode_buffer2);
-        fdecoder(fcode_buffer5, pXIsntHoldingAnything);
-        sub_81202F8(fcode_buffer5, 1);
+        GetMonNick(pokemon, gStringVar1);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnNotHolding);
+        sub_81202F8(gStringVar4, 1);
 
         schedule_bg_copy_tilemap_to_vram(2);
         task->fn = sub_8123BF0;
@@ -29,35 +29,35 @@ void brm_move(u8 taskid) {
 }
 
 void callback(u8 taskid) {
-    if (! (pal_fade_control.active || some_other_kind_of_link_test(0))) {
-        u8* pokesel = get_pokesel();
-        u8 button_unknown = sub_811FEFC(pokesel);
+    if (! (gPaletteFade.active || some_other_kind_of_link_test(0))) {
+        s8* pokesel = get_pokesel();
+        u8 button_unknown = PartyMenuButtonHandler(pokesel);
 
-        if (button_unknown == BTTN_B) {
+        if (button_unknown == B_BUTTON) {
             // also for explicitly selecting cancel
             sub_811FD88(taskid, pokesel);
         } else if (2 < button_unknown) {
             // no idea
-            if (button_unknown == 8 && ptr_brmo2->unk8_0) {
-                audio_play(AUDIO_GENERICCLINK);
+            if (button_unknown == 8 && gUnknown_0203B09C->unk8_0) {
+                PlaySE(SE_SELECT);
                 sub_8124258();
             }
-        } else if (button_unknown == BTTN_A) {
-            audio_play(AUDIO_GENERICCLINK);
+        } else if (button_unknown == A_BUTTON) {
+            PlaySE(SE_SELECT);
 
-            u16 item1 = pokemon_getattr(&party_player[brm.pokesel1], REQ_HELDITEM);
-            u16 item2 = pokemon_getattr(&party_player[brm.pokesel2], REQ_HELDITEM);
+            u16 item1 = GetMonData(&gPlayerParty[brm.pokesel1], MON_DATA_HELD_ITEM);
+            u16 item2 = GetMonData(&gPlayerParty[brm.pokesel2], MON_DATA_HELD_ITEM);
 
-            pokemon_setattr(&party_player[brm.pokesel1], REQ_HELDITEM, &item2);
-            pokemon_setattr(&party_player[brm.pokesel2], REQ_HELDITEM, &item1);
+            SetMonData(&gPlayerParty[brm.pokesel1], MON_DATA_HELD_ITEM, &item2);
+            SetMonData(&gPlayerParty[brm.pokesel2], MON_DATA_HELD_ITEM, &item1);
 
             sub_81224B4(
-                &party_player[brm.pokesel1],
+                &gPlayerParty[brm.pokesel1],
                 &party_menu_something[brm.pokesel1]
             );
 
             sub_81224B4(
-                &party_player[brm.pokesel2],
+                &gPlayerParty[brm.pokesel2],
                 &party_menu_something[brm.pokesel2]
             );
 

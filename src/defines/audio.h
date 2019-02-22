@@ -1,3 +1,3 @@
 #pragma once
 
-#define AUDIO_GENERICCLINK 5
+#define SE_SELECT 5             // Cursor Selection

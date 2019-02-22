@@ -1,9 +1,9 @@
 #pragma once
 #include "types.h"
 
-#include "defines/attributes.h"
+#define packed __attribute__((packed))
 
-struct packed task {
+struct packed Task {
     void (*fn)(u8 taskid);
     u8 id;
     u8 prev;
@@ -27,16 +27,11 @@ struct packed task {
     u16 private_15;
 };
 
-struct packed pokemon_base {
-    u8 _[80];
+struct packed Pokemon {
+    u8 unk0[100];
 };
 
-struct packed pokemon {
-    struct pokemon_base base;
-    u8 _[20];
-};
-
-struct packed brmo2 {
+struct packed Struct203B09C {
     void (*task)();
     void (*callback)();
 
@@ -52,7 +47,7 @@ struct packed brmo2 {
 
     u16 pal_buffer[0xB0];
     u8 filler[0xA0];
-    i16 private[16];
+    s16 private[16];
 };
 
 struct packed brmo {
@@ -71,30 +66,24 @@ struct packed brmo {
     u16 field_10;
 };
 
-struct fade_ctrl {
-    u16 bg_pal_bitfield;
-
-    u16 obj_pal_bitfield;
-
-    u16 delay_counter : 6;
-    u16 y : 5; // blend coefficient
-    u16 target_y : 5; // target blend coefficient
-
-    u16 blend_color : 15;
-    u16 active : 1;
-
-    u16 multipurpose2 : 6;
-    u16 y_dec : 1; // whether blend coefficient is decreasing
-    u16 buffer_transfer_disabled : 1;
-    u16 mode : 2;
-    u16 should_reset_blend_registers : 1;
-    u16 hardware_fade_finishing : 1;
-
-    u16 software_fade_finishing_counter : 5;
-    u16 software_fade_finishing : 1;
-    u16 obj_palette_toggle : 1;
-    u16 _ : 1;
-    u16 delta_y : 4; // rate of change of blend coefficient
+struct packed PaletteFadeControl {
+    u32 multipurpose1;
+    u8 delayCounter:6;
+    u16 y:5; // blend coefficient
+    u16 targetY:5; // target blend coefficient
+    u16 blendColor:15;
+    bool16 active:1;
+    u16 multipurpose2:6;
+    bool16 yDec:1; // whether blend coefficient is decreasing
+    bool16 bufferTransferDisabled:1;
+    u16 mode:2;
+    bool16 shouldResetBlendRegisters:1;
+    bool16 hardwareFadeFinishing:1;
+    u16 softwareFadeFinishingCounter:5;
+    bool16 softwareFadeFinishing:1;
+    bool16 objPaletteToggle:1;
+    u8 deltaY:4; // rate of change of blend coefficient
+    u8 unkB;
 };
 
 struct rodata {

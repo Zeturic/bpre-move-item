@@ -1,4 +1,5 @@
 #pragma once
 
-#define BTTN_A  1
-#define BTTN_B  2
+#define A_BUTTON        0x0001
+#define B_BUTTON        0x0002
+#define START_BUTTON    0x0008

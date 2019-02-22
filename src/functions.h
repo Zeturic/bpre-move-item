@@ -1,15 +1,15 @@
 #pragma once
 #include "types.h"
 
-void audio_play(u8 audio_id);
+void PlaySE(u16 songNum);
 void sub_8121CE4(u8* unk);
 void display_pokemon_menu_message(u32 id);
 void sub_811F818(u8 partyid, u8 unk);
-bool some_other_kind_of_link_test(u32 unk);
-u8* get_pokesel();
-u8 sub_811FEFC(u8* pokesel);
-void sub_811FD88(u8 taskid, u8* pokesel);
-void sub_811FBC4(u8 taskid, u8* pokesel);
+bool8 some_other_kind_of_link_test(u32 unk);
+s8* get_pokesel();
+u16 PartyMenuButtonHandler(s8 *ptr);
+void sub_811FD88(u8 taskid, s8* pokesel);
+void sub_811FBC4(u8 taskid, s8* pokesel);
 void sub_8124258();
 void sub_8122E5C(u8 taskid);
 u8 sub_81202F8(u8* str, u8);
@@ -19,16 +19,16 @@ void sub_81231E8(u8 taskid);
 void sub_811F234(u8 taskid);
 void sub_81B469C(u8 taskid);
 
-u32 pokemon_getnick(struct pokemon* pokemon, u8* dst);
-void fdecoder(u8* dst, u8* src);
+u32 GetMonNick(struct Pokemon* pokemon, u8* dst);
+void StringExpandPlaceholders(u8* dst, u8* src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
 void render_party_menu_box(u8 slot);
 void init_party_menu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
-void sub_81224B4(struct pokemon*, struct party_menu_something*);
-void rboxid_print(u8 windowid, u8 fontid, u8 left, u8 top, const u8* color, i8 speed, const u8* str);
+void sub_81224B4(struct Pokemon*, struct party_menu_something*);
+void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
 
-u32 pokemon_getattr(struct pokemon*, u8);
-void* pokemon_setattr(struct pokemon*, u8, void*);
+u32 GetMonData(struct Pokemon*, u8);
+void* SetMonData(struct Pokemon*, u8, void*);
 
 void callback(u8 taskid);
 
