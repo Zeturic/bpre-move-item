@@ -14,8 +14,7 @@ sizeof equ 8
 .gba
 .thumb
 
-.create "test.gba", 0x08000000
-.import "rom.gba"
+.open "rom.gba", 0x08000000
 
 .include "macros.s"
 
