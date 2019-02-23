@@ -1,5 +1,6 @@
 #!/usr/bin/env make
 include config.mk
+include $(DEVKITARM)/gba_rules
 
 GCC_DEFINES = -D MSG_MOVE=$(MSG_MOVE)
 ARMIPS_DEFINES = -equ MSG_MOVE $(MSG_MOVE)
