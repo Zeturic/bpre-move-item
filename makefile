@@ -12,7 +12,7 @@ RESERVE ?= 0
 START_AT ?= 0x08800000
 
 C_HEADERS = $(wildcard src/*.h) $(wildcard src/constants/*.h) config.mk
-ASM_HEADERS = $(wildcard *.s) character-encoding.tbl config.mk
+ASM_HEADERS = $(wildcard *.s) character-encoding.tbl config.mk strings.asm
 
 ROM_GBA ?= rom.gba
 TEST_GBA ?= test.gba

@@ -35,9 +35,9 @@
 .word item_brm_strings
 
 .org bottom_right_menu + moveitemid * 8
-.word aMove, CursorCb_MoveItem |1
+.word gText_Move, CursorCb_MoveItem |1
 
 .org msg_mix + MSG_MOVE * 4
-.word aSwitchItemsWithWhichPokemon
+.word gText_MoveWhere
 
 .close

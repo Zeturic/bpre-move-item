@@ -18,3 +18,4 @@ moveitemid equ 0x12
 .definelabel gStringVar4, 0x02021D18
 
 .definelabel gText_PkmnNotHolding, 0x08416C8F
+.definelabel gText_PkmnWasGivenItem, 0x08416C2A

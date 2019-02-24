@@ -1,5 +1,5 @@
-aMove:
+gText_Move:
     .string "MOVE"
 
-aSwitchItemsWithWhichPokemon:
-    .string "Switch items with which [PK][MN]?"
+gText_MoveWhere:
+    .string "Move to where?"
