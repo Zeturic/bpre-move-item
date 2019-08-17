@@ -16,15 +16,14 @@ u8 sub_81202F8(u8* str, u8);
 void sub_8123BF0(u8 taskid);
 void sub_8123270(u8 taskid);
 void sub_81231E8(u8 taskid);
-void sub_811F234(u8 taskid);
-void sub_81B469C(u8 taskid);
+void DisplayPartyPokemonData(u8 taskid);
 
 u32 GetMonNick(struct Pokemon* pokemon, u8* dst);
 void StringExpandPlaceholders(u8* dst, u8* src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
-void render_party_menu_box(u8 slot);
-void init_party_menu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
-void sub_81224B4(struct Pokemon*, struct party_menu_something*);
+void RenderPartyMenuBox(u8 slot);
+void InitPartyMenu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
+void sub_81224B4(struct Pokemon*, struct Struct203B0B4*);
 void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
 
 u32 GetMonData(struct Pokemon*, u8);

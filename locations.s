@@ -1,16 +1,19 @@
-moveitemid equ 0x12
+MENU_GIVE       equ 0x04
+MENU_TAKE_ITEM  equ 0x05
+MENU_MOVE       equ 0x12
+MENU_CANCEL2    equ 0x09
 
-.definelabel stru_845A120, 0x0845A120
-.definelabel unk_845A760, 0x0845A760
-.definelabel off_845A72C, 0x0845A72C
-.definelabel bottom_right_menu, 0x08C0A618
-.definelabel msg_mix, 0x0845A2E8
+.definelabel gUnknown_0845A148, 0x0845A148
+.definelabel sListSizeTable, 0x0845A760
+.definelabel sActionTable, 0x0845A72C
+.definelabel sCursorOptions, 0x08C0A618
+.definelabel sActionStringTable, 0x0845A2E8
 
 .definelabel gUnknown_0203B09C, 0x0203B09C
-.definelabel brm, 0x0203B0A0
+.definelabel gUnknown_0203B0A0, 0x0203B0A0
 .definelabel gTasks, 0x03005090
 .definelabel gPaletteFade, 0x02037AB8
-.definelabel party_menu_something, 0x0203B0B4
+.definelabel gUnknown_0203B0B4, 0x0203B0B4
 
 .definelabel gPlayerParty, 0x02024284
 

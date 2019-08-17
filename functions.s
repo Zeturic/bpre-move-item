@@ -14,15 +14,14 @@
 .definelabel sub_81202F8, 0x081202F8
 .definelabel sub_8123270, 0x08123270
 .definelabel sub_81231E8, 0x081231E8
-.definelabel sub_811F234, 0x0811F234
-.definelabel sub_81B469C, 0x081B469C
+.definelabel DisplayPartyPokemonData, 0x0811F234
 .definelabel sub_81224B4, 0x081224B4
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
 .definelabel GetMonNick, 0x081202E0
 .definelabel schedule_bg_copy_tilemap_to_vram, 0x080F67A4
-.definelabel render_party_menu_box, 0x0811F124
-.definelabel init_party_menu, 0x0811EA44
+.definelabel RenderPartyMenuBox, 0x0811F124
+.definelabel InitPartyMenu, 0x0811EA44
 .definelabel AddTextPrinterParameterized3, 0x0812E51C
 
 .definelabel GetMonData, 0x0803FBE8

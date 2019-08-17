@@ -1,4 +1,5 @@
 .gba
+.include "macros.s"
 
 .arm
 .include "locations.s"
@@ -19,25 +20,25 @@
     .thumb
 
     item_brm_strings:
-        .byte 0x04, 0x05, moveitemid, 0x09
+        .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE, MENU_CANCEL2
 .endarea
 
-// item brm rboxid
-.org stru_845A120 + 5 * 8
-.byte 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x73, 0x03
+// item brm window template
+.org gUnknown_0845A148
+window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 
 // item brm num entries
-.org unk_845A760 + 8
+.org sListSizeTable + 8
 .byte 4
 
 // item brm strings
-.org off_845A72C + 8 * 4
+.org sActionTable + 8 * 4
 .word item_brm_strings
 
-.org bottom_right_menu + moveitemid * 8
+.org sCursorOptions + MENU_MOVE * 8
 .word gText_Move, CursorCb_MoveItem |1
 
-.org msg_mix + MSG_MOVE * 4
+.org sActionStringTable + MSG_MOVE * 4
 .word gText_MoveWhere
 
 .close

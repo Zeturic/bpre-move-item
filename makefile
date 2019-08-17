@@ -62,5 +62,8 @@ $(OBJ)/%.o: $(SRC)/%.c $(C_HEADERS)
 	mkdir -p $(OBJ)
 	$(GCC) $(GCC_FLAGS) -mlong-calls $< -o $@
 
-repoint:
-	$(ARMIPS) repoint-brm.asm
+repoint-cursor-options:
+	$(ARMIPS) repoint-cursor-options.asm
+
+repoint-action-tables:
+	$(ARMIPS) repoint-action-tables.asm

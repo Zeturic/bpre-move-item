@@ -28,38 +28,38 @@ struct packed Task {
 };
 
 struct packed Pokemon {
-    u8 unk0[100];
+    u8 filler_0[100];
 };
 
 struct packed Struct203B09C {
     void (*task)();
-    void (*callback)();
+    void (*exitCallback)();
 
-    u32 unk8_0 : 1;
-    u32 unk8_1 : 3;
-    u32 unk8_2 : 7;
-    u32 unk8_3 : 7;
-    u32 unk8_4 : 14;
+    u32 field_8_0 : 1;
+    u32 field_8_1 : 3;
+    u32 field_8_2 : 7;
+    u32 field_8_3 : 7;
+    u32 messageId : 14;
 
-    u8 field_C[3];
-    u8 seq[8];
-    u8 cur;
+    u8 windowId[3];
+    u8 actions[8];
+    u8 listSize;
 
-    u16 pal_buffer[0xB0];
-    u8 filler[0xA0];
+    u16 pal_buffer[0x100];
     s16 private[16];
 };
 
-struct packed brmo {
+struct packed Struct203B0A0 {
     void (*callback)();
     void (*task)();
 
-    u8 unk8_0:4;
+    u8 field_8_0:4;
     u8 mode:2;
-    u8 unk8_2:2;
+    u8 field_8_2:2;
 
-    u8 pokesel1;
-    u8 pokesel2;
+    s8 slotId;
+    s8 pokesel2;
+
     u8 field_B;
     u16 item;
     u16 move;
@@ -86,7 +86,7 @@ struct packed PaletteFadeControl {
     u8 unkB;
 };
 
-struct rodata {
+struct packed Unk_Rodata1 {
     void (*fn)(u8, u8, u8, u8, u8, u8);
     u8 field_4[24];
     u8 field_1C;
@@ -95,13 +95,13 @@ struct rodata {
     u8 field_1F;
 };
 
-struct packed party_menu_something {
-    struct rodata* rodata;
+struct packed Struct203B0B4 {
+    struct Unk_Rodata1* rodata;
     u8* field_4;
-    u8 windowid;
-    u8 party_icon;
-    u8 held_item;
-    u8 poke_ball;
-    u8 status;
-    u8 filler[3];
+    u8 windowId;
+    u8 monSpriteId;
+    u8 itemSpriteId;
+    u8 pokeballSpriteId;
+    u8 statusSpriteId;
+    u8 filler_D[3];
 };
