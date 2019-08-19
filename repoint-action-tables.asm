@@ -3,8 +3,14 @@
 NUM_ACTIONS_OLD equ 13
 NUM_ADDITIONAL_ACTIONS equ 3
 
-.definelabel sActionTableOld, 0x0845A72C
-.definelabel sListSizeTableOld, 0x0845A760
+// -----------------------------------------------------------------------------
+
+.definelabel sActionTableOld, readu32("rom.gba", 0x081229F8 & 0x1FFFFFF)
+.definelabel sListSizeTableOld, readu32("rom.gba", 0x081229F4 & 0x1FFFFFF)
+
+.if sActionTableOld == free_space
+    .error "The source and destination of the repointing are the same."
+.endif
 
 // -----------------------------------------------------------------------------
 
@@ -55,5 +61,7 @@ safeupdateptr 0x081229F4, sListSizeTableOld, sListSizeTableNew
 
 .close
 
-.notice "sActionTable has been moved from 0x" + tohex(sActionTableOld) + " to 0x" + tohex(sActionTableNew)
-.notice "sListSizeTable has been moved from 0x" + tohex(sListSizeTableOld) + " to 0x" + tohex(sListSizeTableNew)
+.if sActionTableOld != free_space
+    .notice "sActionTable has been moved from 0x" + tohex(sActionTableOld) + " to 0x" + tohex(sActionTableNew)
+    .notice "sListSizeTable has been moved from 0x" + tohex(sListSizeTableOld) + " to 0x" + tohex(sListSizeTableNew)
+.endif

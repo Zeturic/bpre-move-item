@@ -5,7 +5,13 @@ NUM_ADDITIONAL_REGULAR_CURSOR_OPTIONS equ 2
 
 NUM_FIELD_MOVE_CURSOR_OPTIONS equ 12
 
-.definelabel sCursorOptionsOld, 0x0845A618
+// -----------------------------------------------------------------------------
+
+.definelabel sCursorOptionsOld, readu32("rom.gba", 0x08120F74 & 0x1FFFFFF)
+
+.if sCursorOptionsOld == free_space
+    .error "The source and destination of the repointing are the same."
+.endif
 
 // -----------------------------------------------------------------------------
 
@@ -70,4 +76,6 @@ safeupdateptr 0x08122D48, sCursorOptionsOld, sCursorOptionsNew
 
 .close
 
-.notice "sCursorOptions has been moved from 0x" + tohex(sCursorOptionsOld) + " to 0x" + tohex(sCursorOptionsNew)
+.if sCursorOptionsOld != free_space
+    .notice "sCursorOptions has been moved from 0x" + tohex(sCursorOptionsOld) + " to 0x" + tohex(sCursorOptionsNew)
+.endif
