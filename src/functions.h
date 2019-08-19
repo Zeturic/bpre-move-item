@@ -26,6 +26,9 @@ void InitPartyMenu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
 void sub_81224B4(struct Pokemon*, struct Struct203B0B4*);
 void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
 void HandleMenuInput(u8 taskId);
+void AppendToList(u8* list, u8* pos, u8 newEntry);
+void CreateItemActionList(struct Pokemon *mons, u8 slotId);
+u16 AddWindow(const struct WindowTemplate *template);
 
 u32 GetMonData(struct Pokemon*, u8);
 void* SetMonData(struct Pokemon*, u8, void*);

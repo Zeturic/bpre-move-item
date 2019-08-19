@@ -90,3 +90,14 @@ struct packed Struct203B0B4 {
     u8 statusSpriteId;
     u8 filler_D[3];
 };
+
+struct packed WindowTemplate
+{
+    u8 bg;
+    u8 tilemapLeft;
+    u8 tilemapTop;
+    u8 width;
+    u8 height;
+    u8 paletteNum;
+    u16 baseBlock;
+};

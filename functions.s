@@ -26,6 +26,8 @@
 .definelabel InitPartyMenu, 0x0811EA44
 .definelabel AddTextPrinterParameterized3, 0x0812E51C
 .definelabel HandleMenuInput, 0x08122C5C
+.definelabel AppendToList, 0x0806FEC8
+.definelabel AddWindow, 0x08003CE4
 
 .definelabel GetMonData, 0x0803FBE8
 .definelabel SetMonData, 0x0804037C

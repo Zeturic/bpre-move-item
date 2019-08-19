@@ -77,3 +77,16 @@ void CursorCb_Item(u8 taskId)
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
 }
+
+void CreateItemActionList(struct Pokemon *mons, u8 slotId)
+{
+    gUnknown_0203B09C->listSize = 0;
+
+    AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_GIVE);
+    AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_TAKE_ITEM);
+
+    if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
+        AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_MOVE);
+
+    AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_CANCEL2);
+}

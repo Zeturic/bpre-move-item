@@ -16,3 +16,5 @@ extern u8 gText_PkmnNotHolding[];
 extern u8 gText_PkmnWasGivenItem[];
 
 extern struct Struct203B0B4* gUnknown_0203B0B4;
+
+extern const struct WindowTemplate gUnknown_0845A130;
