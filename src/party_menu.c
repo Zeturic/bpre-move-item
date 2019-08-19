@@ -78,7 +78,7 @@ void CursorCb_Item(u8 taskId)
     
     CreateItemActionList(gPlayerParty);
     sub_8121E5C(1);
-    display_pokemon_menu_message(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE ? 25 : 27);
+    display_pokemon_menu_message(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE ? 25 : 21);
 
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
@@ -108,6 +108,9 @@ void display_pokemon_menu_message(u32 stringID)
     {
         switch (stringID)
         {
+        case 21:
+            *windowPtr = AddWindow(&gUnknown_CustomWindowTemplate);
+            break;
         case 22:
             *windowPtr = AddWindow(&gUnknown_0845A128);
             break;
@@ -120,9 +123,6 @@ void display_pokemon_menu_message(u32 stringID)
             break;
         case 26:
             *windowPtr = AddWindow(&gUnknown_0845A138);
-            break;
-        case 27:
-            *windowPtr = AddWindow(&gUnknown_CustomWindowTemplate);
             break;
         default:
             *windowPtr = AddWindow(&gUnknown_0845A120);
