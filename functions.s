@@ -1,6 +1,5 @@
 .definelabel PlaySE, 0x080722CC
 .definelabel sub_8121CE4, 0x08121CE4
-.definelabel display_pokemon_menu_message, 0x08121D0C
 .definelabel sub_811F818, 0x0811F818
 
 .definelabel PartyMenuButtonHandler, 0x0811FEFC
@@ -28,6 +27,9 @@
 .definelabel HandleMenuInput, 0x08122C5C
 .definelabel AppendToList, 0x0806FEC8
 .definelabel AddWindow, 0x08003CE4
+.definelabel sub_8121DF8, 0x08121DF8
+.definelabel AddTextPrinterParameterized, 0x08002C48
+.definelabel DrawStdFrameWithCustomTileAndPalette, 0x0810F2E8
 
 .definelabel GetMonData, 0x0803FBE8
 .definelabel SetMonData, 0x0804037C

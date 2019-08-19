@@ -90,3 +90,45 @@ void CreateItemActionList(struct Pokemon *mons, u8 slotId)
 
     AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_CANCEL2);
 }
+
+void display_pokemon_menu_message(u32 stringID)
+{
+    u8 *windowPtr = &gUnknown_0203B09C->windowId[1];
+
+    if (*windowPtr != 0xFF)
+        sub_8121CE4(windowPtr);
+
+    if (stringID != 0x7F)
+    {
+        switch (stringID)
+        {
+        case 22:
+            *windowPtr = AddWindow(&gUnknown_0845A128);
+            break;
+        case 23:
+        case 24:
+            *windowPtr = AddWindow(&gUnknown_0845A140);
+            break;
+        case 25:
+            *windowPtr = AddWindow(&gUnknown_0845A130);
+            break;
+        case 26:
+            *windowPtr = AddWindow(&gUnknown_0845A138);
+            break;
+        default:
+            *windowPtr = AddWindow(&gUnknown_0845A120);
+            break;
+        }
+        if (stringID == 0)
+        {
+            if (gUnknown_0203B09C->field_8_0)
+                stringID = 2;
+            else if (sub_8121DF8() == FALSE)
+                stringID = 1;
+        }
+        DrawStdFrameWithCustomTileAndPalette(*windowPtr, FALSE, 0x58, 0xF);
+        StringExpandPlaceholders(gStringVar4, sActionStringTable[stringID]);
+        AddTextPrinterParameterized(*windowPtr, 2, gStringVar4, 0, 2, 0, 0);
+        schedule_bg_copy_tilemap_to_vram(2);
+    }
+}

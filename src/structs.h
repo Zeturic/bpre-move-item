@@ -101,3 +101,5 @@ struct packed WindowTemplate
     u8 paletteNum;
     u16 baseBlock;
 };
+
+struct TextPrinterTemplate;

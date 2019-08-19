@@ -19,7 +19,7 @@ void sub_81231E8(u8 taskid);
 void DisplayPartyPokemonData(u8 taskid);
 
 u32 GetMonNick(struct Pokemon* pokemon, u8* dst);
-void StringExpandPlaceholders(u8* dst, u8* src);
+u8 *StringExpandPlaceholders(u8 *dest, const u8 *src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
 void RenderPartyMenuBox(u8 slot);
 void InitPartyMenu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
@@ -29,6 +29,10 @@ void HandleMenuInput(u8 taskId);
 void AppendToList(u8* list, u8* pos, u8 newEntry);
 void CreateItemActionList(struct Pokemon *mons, u8 slotId);
 u16 AddWindow(const struct WindowTemplate *template);
+u8 sub_8121DF8(void);
+void sub_8121CE4(u8 *ptr);
+void DrawStdFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 tileStart, u8 palette);
+u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16));
 
 u32 GetMonData(struct Pokemon*, u8);
 void* SetMonData(struct Pokemon*, u8, void*);

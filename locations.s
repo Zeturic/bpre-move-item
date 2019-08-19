@@ -16,7 +16,12 @@ ACTION_ITEM_EXPANDED    equ 13
 .definelabel gTasks, 0x03005090
 .definelabel gPaletteFade, 0x02037AB8
 .definelabel gUnknown_0203B0B4, 0x0203B0B4
+
+.definelabel gUnknown_0845A120, 0x0845A120
+.definelabel gUnknown_0845A128, 0x0845A128
 .definelabel gUnknown_0845A130, 0x0845A130
+.definelabel gUnknown_0845A138, 0x0845A138
+.definelabel gUnknown_0845A140, 0x0845A140
 
 .definelabel gPlayerParty, 0x02024284
 
