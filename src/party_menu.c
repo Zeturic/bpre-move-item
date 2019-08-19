@@ -115,6 +115,9 @@ void display_pokemon_menu_message(u32 stringID)
         case 26:
             *windowPtr = AddWindow(&gUnknown_0845A138);
             break;
+        case 27:
+            *windowPtr = AddWindow(&gUnknown_CustomWindowTemplate);
+            break;
         default:
             *windowPtr = AddWindow(&gUnknown_0845A120);
             break;

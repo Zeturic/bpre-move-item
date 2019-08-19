@@ -22,5 +22,6 @@ extern const struct WindowTemplate gUnknown_0845A128;
 extern const struct WindowTemplate gUnknown_0845A130;
 extern const struct WindowTemplate gUnknown_0845A138;
 extern const struct WindowTemplate gUnknown_0845A140;
+extern const struct WindowTemplate gUnknown_CustomWindowTemplate;
 
 extern const u8 *const sActionStringTable[];

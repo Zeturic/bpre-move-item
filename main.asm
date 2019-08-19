@@ -23,7 +23,7 @@
         .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE, MENU_CANCEL2
 
     // expanded ITEM menu window template
-    gUnknown_somewhere:
+    gUnknown_CustomWindowTemplate:
         window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 .endarea
 
