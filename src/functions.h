@@ -27,7 +27,7 @@ void sub_81224B4(struct Pokemon*, struct Struct203B0B4*);
 void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
 void HandleMenuInput(u8 taskId);
 void AppendToList(u8* list, u8* pos, u8 newEntry);
-void CreateItemActionList(struct Pokemon *mons, u8 slotId);
+void CreateItemActionList(struct Pokemon *mons);
 u16 AddWindow(const struct WindowTemplate *template);
 u8 sub_8121DF8(void);
 void sub_8121CE4(u8 *ptr);

@@ -71,14 +71,20 @@ void CursorCb_Item(u8 taskId)
     PlaySE(SE_SELECT);
     sub_8121CE4(&gUnknown_0203B09C->windowId[0]);
     sub_8121CE4(&gUnknown_0203B09C->windowId[1]);
-    sub_812299C(gPlayerParty, gUnknown_0203B0A0.slotId, 8);
+    
+    // sub_812299C(gPlayerParty, gUnknown_0203B0A0.slotId, 8);
+    // sub_8121E5C(1);
+    // display_pokemon_menu_message(25);
+    
+    CreateItemActionList(gPlayerParty);
     sub_8121E5C(1);
-    display_pokemon_menu_message(25);
+    display_pokemon_menu_message(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE ? 25 : 27);
+
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
 }
 
-void CreateItemActionList(struct Pokemon *mons, u8 slotId)
+void CreateItemActionList(struct Pokemon *mons)
 {
     gUnknown_0203B09C->listSize = 0;
 

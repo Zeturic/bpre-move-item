@@ -8,7 +8,7 @@ ACTION_ITEM_EXPANDED    equ 13
 .definelabel gUnknown_0845A148, 0x0845A148
 .definelabel sListSizeTable, 0x0845A760
 .definelabel sActionTable, 0x0845A72C
-.definelabel sCursorOptions, 0x08C0A618
+.definelabel sCursorOptions, readu32("rom.gba", 0x08120F74 & 0x1FFFFFF)
 .definelabel sActionStringTable, 0x0845A2E8
 
 .definelabel gUnknown_0203B09C, 0x0203B09C
