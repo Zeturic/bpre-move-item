@@ -25,9 +25,14 @@ void RenderPartyMenuBox(u8 slot);
 void InitPartyMenu(u8, u8, u8, u8, u8, void (*task)(), void (*callback)());
 void sub_81224B4(struct Pokemon*, struct Struct203B0B4*);
 void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
+void HandleMenuInput(u8 taskId);
 
 u32 GetMonData(struct Pokemon*, u8);
 void* SetMonData(struct Pokemon*, u8, void*);
+
+void sub_8121CE4(u8 *ptr);
+void sub_812299C(struct Pokemon *mons, u8 slotId, u8 b);
+u8 sub_8121E5C(u8 a);
 
 void callback(u8 taskid);
 

@@ -21,18 +21,18 @@
 
     item_brm_strings:
         .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE, MENU_CANCEL2
+
+    // expanded ITEM menu window template
+    gUnknown_somewhere:
+        window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 .endarea
 
-// item brm window template
-.org gUnknown_0845A148
-window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
-
 // item brm num entries
-.org sListSizeTable + 8
+.org sListSizeTable + ACTION_ITEM_EXPANDED
 .byte 4
 
 // item brm strings
-.org sActionTable + 8 * 4
+.org sActionTable + ACTION_ITEM_EXPANDED * 4
 .word item_brm_strings
 
 .org sCursorOptions + MENU_MOVE * 8
@@ -40,5 +40,12 @@ window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 
 .org sActionStringTable + MSG_MOVE * 4
 .word gText_MoveWhere
+
+.org 0x081236A0     // CursorCb_Item
+.area 0x64, 0xFE
+    ldr r3, =CursorCb_Item |1
+    bx r3
+    .pool
+.endarea
 
 .close

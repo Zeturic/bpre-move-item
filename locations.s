@@ -3,6 +3,8 @@ MENU_TAKE_ITEM  equ 0x05
 MENU_MOVE       equ 0x12
 MENU_CANCEL2    equ 0x09
 
+ACTION_ITEM_EXPANDED    equ 13
+
 .definelabel gUnknown_0845A148, 0x0845A148
 .definelabel sListSizeTable, 0x0845A760
 .definelabel sActionTable, 0x0845A72C

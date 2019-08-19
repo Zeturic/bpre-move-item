@@ -4,27 +4,12 @@
 #define packed __attribute__((packed))
 
 struct packed Task {
-    void (*fn)(u8 taskid);
-    u8 id;
+    void (*func)(u8 taskid);
+    u8 isActive;
     u8 prev;
     u8 next;
     u8 priority;
-    u16 private_00;
-    u16 private_01;
-    u16 private_02;
-    u16 private_03;
-    u16 private_04;
-    u16 private_05;
-    u16 private_06;
-    u16 private_07;
-    u16 private_08;
-    u16 private_09;
-    u16 private_10;
-    u16 private_11;
-    u16 private_12;
-    u16 private_13;
-    u16 private_14;
-    u16 private_15;
+    s16 data[16];
 };
 
 struct packed Pokemon {

@@ -16,7 +16,7 @@ void CursorCb_MoveItem(u8 taskid) {
         display_pokemon_menu_message(MSG_MOVE);
         sub_811F818(gUnknown_0203B0A0.slotId, 1);
         gUnknown_0203B0A0.pokesel2 = gUnknown_0203B0A0.slotId;
-        task->fn = callback;
+        task->func = callback;
 
     } else {
         GetMonNick(pokemon, gStringVar1);
@@ -24,7 +24,7 @@ void CursorCb_MoveItem(u8 taskid) {
         sub_81202F8(gStringVar4, 1);
 
         schedule_bg_copy_tilemap_to_vram(2);
-        task->fn = sub_8123BF0;
+        task->func = sub_8123BF0;
     }
 }
 
@@ -64,4 +64,16 @@ void callback(u8 taskid) {
             sub_811FD88(taskid, pokesel);
         }
     }
+}
+
+void CursorCb_Item(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    sub_8121CE4(&gUnknown_0203B09C->windowId[0]);
+    sub_8121CE4(&gUnknown_0203B09C->windowId[1]);
+    sub_812299C(gPlayerParty, gUnknown_0203B0A0.slotId, 8);
+    sub_8121E5C(1);
+    display_pokemon_menu_message(25);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = HandleMenuInput;
 }

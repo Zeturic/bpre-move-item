@@ -16,6 +16,8 @@
 .definelabel sub_81231E8, 0x081231E8
 .definelabel DisplayPartyPokemonData, 0x0811F234
 .definelabel sub_81224B4, 0x081224B4
+.definelabel sub_812299C, 0x0812299C
+.definelabel sub_8121E5C, 0x08121E5C
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
 .definelabel GetMonNick, 0x081202E0
@@ -23,6 +25,7 @@
 .definelabel RenderPartyMenuBox, 0x0811F124
 .definelabel InitPartyMenu, 0x0811EA44
 .definelabel AddTextPrinterParameterized3, 0x0812E51C
+.definelabel HandleMenuInput, 0x08122C5C
 
 .definelabel GetMonData, 0x0803FBE8
 .definelabel SetMonData, 0x0804037C
