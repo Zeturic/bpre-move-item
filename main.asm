@@ -38,13 +38,6 @@
     .pool
 .endarea
 
-.org 0x08121D0C     // display_pokemon_menu_message
-.area 0xEC, 0xFE
-    ldr r3, =display_pokemon_menu_message |1
-    bx r3
-    .pool
-.endarea
-
 .org 0x08121E5C     // sub_8121E5C
 .area 0x164, 0xFE
     ldr r3, =sub_8121E5C |1

@@ -17,6 +17,7 @@
 .definelabel sub_81224B4, 0x081224B4
 .definelabel sub_812299C, 0x0812299C
 // .definelabel sub_8121E5C, 0x08121E5C
+.definelabel display_pokemon_menu_message, 0x08121D0C
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
 .definelabel GetMonNick, 0x081202E0
