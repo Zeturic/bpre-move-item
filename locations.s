@@ -27,3 +27,5 @@
 .definelabel gUnknown_0845A150, 0x0845A150
 .definelabel gUnknown_0845A158, 0x0845A158
 .definelabel sFontColorTable, 0x08459FFC
+
+.definelabel gText_PauseUntilPress, 0x084169D9

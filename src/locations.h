@@ -31,3 +31,5 @@ extern const u8 *const sActionStringTable[];
 
 extern const struct CursorOption sCursorOptions[];
 extern const u8 sFontColorTable[][3];
+
+extern const u8 gText_PauseUntilPress[];

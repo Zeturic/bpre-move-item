@@ -18,6 +18,7 @@
 .definelabel sub_812299C, 0x0812299C
 // .definelabel sub_8121E5C, 0x08121E5C
 .definelabel display_pokemon_menu_message, 0x08121D0C
+.definelabel sub_811FB28, 0x0811FB28
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
 .definelabel GetMonNick, 0x081202E0
@@ -41,3 +42,4 @@
 .definelabel AddTextPrinterParameterized4, 0x0812E5A4
 .definelabel choice_setup, 0x0810F774
 .definelabel SetWindowTemplateFields, 0x0810FE50
+.definelabel StringAppend, 0x08008DA4

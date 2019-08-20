@@ -38,6 +38,7 @@ u8 GetFontAttribute(u8 fontId, u8 attributeId);
 void SetWindowTemplateFields(struct WindowTemplate* template, u8 priority, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palNum, u16 baseBlock);
 u8 GetMenuCursorDimensionByFont(u8 fontId, u8 whichDimension);
 u8 choice_setup(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numChoices, u8 initialCursorPos, u8 a7);
+u8 *StringAppend(u8 *dest, const u8 *src);
 
 u32 GetMonData(struct Pokemon*, u8);
 void* SetMonData(struct Pokemon*, u8, void*);
@@ -45,6 +46,7 @@ void* SetMonData(struct Pokemon*, u8, void*);
 void sub_8121CE4(u8 *ptr);
 void sub_812299C(struct Pokemon *mons, u8 slotId, u8 b);
 u8 sub_8121E5C(u8 a);
+void sub_811FB28(u8 taskId);
 
 void callback(u8 taskid);
 
