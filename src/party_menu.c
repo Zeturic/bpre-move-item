@@ -77,7 +77,7 @@ void CursorCb_Item(u8 taskId)
     // display_pokemon_menu_message(25);
     
     CreateItemActionList(gPlayerParty);
-    sub_8121E5C(1);
+    sub_8121E5C(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE ? 1 : 4);
     display_pokemon_menu_message(25);
 
     gTasks[taskId].data[0] = 0xFF;
@@ -115,7 +115,10 @@ u8 sub_8121E5C(u8 a)
     case 2:
         window = gUnknown_0845A150;
         break;
-    default:
+    case 4:
+        window = gUnknown_CustomWindowTemplate;
+        break;
+    default:    // case 3:
         window = gUnknown_0845A158;
         break;
     }
