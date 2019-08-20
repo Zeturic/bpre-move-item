@@ -13,7 +13,7 @@ void CursorCb_MoveItem(u8 taskid) {
     if (GetMonData(pokemon, MON_DATA_HELD_ITEM) != ITEM_NONE) {
         gUnknown_0203B0A0.field_B = 8;
 
-        display_pokemon_menu_message(MSG_MOVE);
+        display_pokemon_menu_message(ACTION_STR_MOVE);
         sub_811F818(gUnknown_0203B0A0.slotId, 1);
         gUnknown_0203B0A0.pokesel2 = gUnknown_0203B0A0.slotId;
         task->func = callback;

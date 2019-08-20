@@ -34,10 +34,10 @@
 .org sActionTable + ACTION_ITEM * SIZEOF_PTR
 .word gUnknown_ItemMenuActions
 
-.org sCursorOptions + MENU_MOVE * 8
+.org sCursorOptions + MENU_MOVE * SIZEOF_CURSOR_OPTION
 .word gText_Move, CursorCb_MoveItem |1
 
-.org sActionStringTable + MSG_MOVE * 4
+.org sActionStringTable + ACTION_STR_MOVE * 4
 .word gText_MoveWhere
 
 .close
