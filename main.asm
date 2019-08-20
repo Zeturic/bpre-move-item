@@ -1,5 +1,6 @@
 .gba
 .include "macros.s"
+.include "constants.s"
 
 .arm
 .include "locations.s"
@@ -27,10 +28,10 @@
 .org gUnknown_0845A148
     window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 
-.org sListSizeTable + 8
+.org sListSizeTable + ACTION_ITEM * SIZEOF_U8
 .byte 4
 
-.org sActionTable + 8 * 4
+.org sActionTable + ACTION_ITEM * SIZEOF_PTR
 .word gUnknown_ItemMenuActions
 
 .org sCursorOptions + MENU_MOVE * 8
