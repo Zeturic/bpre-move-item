@@ -16,7 +16,7 @@
 .definelabel DisplayPartyPokemonData, 0x0811F234
 .definelabel sub_81224B4, 0x081224B4
 .definelabel sub_812299C, 0x0812299C
-.definelabel sub_8121E5C, 0x08121E5C
+// .definelabel sub_8121E5C, 0x08121E5C
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
 .definelabel GetMonNick, 0x081202E0
@@ -33,3 +33,10 @@
 
 .definelabel GetMonData, 0x0803FBE8
 .definelabel SetMonData, 0x0804037C
+
+.definelabel memcpy, 0x081E5E78
+.definelabel GetMenuCursorDimensionByFont, 0x080F7AC0
+.definelabel GetFontAttribute, 0x080F79D8
+.definelabel AddTextPrinterParameterized4, 0x0812E5A4
+.definelabel choice_setup, 0x0810F774
+.definelabel SetWindowTemplateFields, 0x0810FE50

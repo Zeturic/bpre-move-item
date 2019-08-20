@@ -78,7 +78,7 @@ void CursorCb_Item(u8 taskId)
     
     CreateItemActionList(gPlayerParty);
     sub_8121E5C(1);
-    display_pokemon_menu_message(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE ? 25 : 21);
+    display_pokemon_menu_message(25);
 
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = HandleMenuInput;
@@ -97,6 +97,7 @@ void CreateItemActionList(struct Pokemon *mons)
     AppendToList(gUnknown_0203B09C->actions, &gUnknown_0203B09C->listSize, MENU_CANCEL2);
 }
 
+// TODO: Remove reimplementation
 void display_pokemon_menu_message(u32 stringID)
 {
     u8 *windowPtr = &gUnknown_0203B09C->windowId[1];
@@ -108,9 +109,6 @@ void display_pokemon_menu_message(u32 stringID)
     {
         switch (stringID)
         {
-        case 21:
-            *windowPtr = AddWindow(&gUnknown_CustomWindowTemplate);
-            break;
         case 22:
             *windowPtr = AddWindow(&gUnknown_0845A128);
             break;
@@ -140,4 +138,46 @@ void display_pokemon_menu_message(u32 stringID)
         AddTextPrinterParameterized(*windowPtr, 2, gStringVar4, 0, 2, 0, 0);
         schedule_bg_copy_tilemap_to_vram(2);
     }
+}
+
+u8 sub_8121E5C(u8 a)
+{
+    struct WindowTemplate window;
+    u8 cursorDimension;
+    u8 fontAttribute;
+    u8 i;
+
+    switch (a)
+    {
+    case 0:
+        SetWindowTemplateFields(&window, 2, 19, 19 - (gUnknown_0203B09C->listSize * 2), 10, gUnknown_0203B09C->listSize * 2, 14, 0x2BF);
+        break;
+    case 1:
+        window = gUnknown_0845A148;
+        break;
+    case 2:
+        window = gUnknown_0845A150;
+        break;
+    default:
+        window = gUnknown_0845A158;
+        break;
+    }
+
+    gUnknown_0203B09C->windowId[0] = AddWindow(&window);
+    DrawStdFrameWithCustomTileAndPalette(gUnknown_0203B09C->windowId[0], FALSE, 0x4F, 13);
+    if (a == 3)
+        return gUnknown_0203B09C->windowId[0];
+    cursorDimension = GetMenuCursorDimensionByFont(2, 0);
+    fontAttribute = GetFontAttribute(2, 2);
+
+    for (i = 0; i < gUnknown_0203B09C->listSize; i++)
+    {
+        u8 unk = (gUnknown_0203B09C->actions[i] > 18) ? 4 : 3;
+        AddTextPrinterParameterized4(gUnknown_0203B09C->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[unk], 0, sCursorOptions[gUnknown_0203B09C->actions[i]].text);
+    }
+
+    choice_setup(gUnknown_0203B09C->windowId[0], 2, 0, 2, 16, gUnknown_0203B09C->listSize, 0, 1);
+    schedule_bg_copy_tilemap_to_vram(2);
+
+    return gUnknown_0203B09C->windowId[0];
 }

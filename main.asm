@@ -17,11 +17,12 @@
 
     .arm
     .include "strings.asm"
-    .thumb
 
+    .align 2
     // expanded ITEM menu window template
     gUnknown_CustomWindowTemplate:
         window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
+    .thumb
 .endarea
 
 .org sCursorOptions + MENU_MOVE * 8
@@ -40,6 +41,13 @@
 .org 0x08121D0C     // display_pokemon_menu_message
 .area 0xEC, 0xFE
     ldr r3, =display_pokemon_menu_message |1
+    bx r3
+    .pool
+.endarea
+
+.org 0x08121E5C     // sub_8121E5C
+.area 0x164, 0xFE
+    ldr r3, =sub_8121E5C |1
     bx r3
     .pool
 .endarea

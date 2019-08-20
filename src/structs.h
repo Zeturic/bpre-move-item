@@ -102,4 +102,10 @@ struct packed WindowTemplate
     u16 baseBlock;
 };
 
+struct packed CursorOption
+{
+    const u8 *text;
+    TaskFunc func;
+};
+
 struct TextPrinterTemplate;

@@ -22,6 +22,12 @@ extern const struct WindowTemplate gUnknown_0845A128;
 extern const struct WindowTemplate gUnknown_0845A130;
 extern const struct WindowTemplate gUnknown_0845A138;
 extern const struct WindowTemplate gUnknown_0845A140;
+extern const struct WindowTemplate gUnknown_0845A148;
+extern const struct WindowTemplate gUnknown_0845A150;
+extern const struct WindowTemplate gUnknown_0845A158;
 extern const struct WindowTemplate gUnknown_CustomWindowTemplate;
 
 extern const u8 *const sActionStringTable[];
+
+extern const struct CursorOption sCursorOptions[];
+extern const u8 sFontColorTable[][3];

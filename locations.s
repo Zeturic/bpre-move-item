@@ -30,3 +30,7 @@ ACTION_ITEM_EXPANDED    equ 13
 
 .definelabel gText_PkmnNotHolding, 0x08416C8F
 .definelabel gText_PkmnWasGivenItem, 0x08416C2A
+
+.definelabel gUnknown_0845A150, 0x0845A150
+.definelabel gUnknown_0845A158, 0x0845A158
+.definelabel sFontColorTable, 0x08459FFC
