@@ -19,6 +19,8 @@
 .definelabel gPlayerParty, 0x02024284
 
 .definelabel gStringVar1, 0x02021CD0
+.definelabel gStringVar2, 0x02021CF0
+.definelabel gStringVar3, 0x02021D04
 .definelabel gStringVar4, 0x02021D18
 
 .definelabel gText_PkmnNotHolding, 0x08416C8F

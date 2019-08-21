@@ -21,7 +21,7 @@
 .definelabel sub_811FB28, 0x0811FB28
 
 .definelabel StringExpandPlaceholders, 0x08008FCC
-.definelabel GetMonNick, 0x081202E0
+.definelabel GetMonNickname, 0x081202E0
 .definelabel schedule_bg_copy_tilemap_to_vram, 0x080F67A4
 .definelabel RenderPartyMenuBox, 0x0811F124
 .definelabel InitPartyMenu, 0x0811EA44
@@ -32,6 +32,7 @@
 .definelabel sub_8121DF8, 0x08121DF8
 .definelabel AddTextPrinterParameterized, 0x08002C48
 .definelabel DrawStdFrameWithCustomTileAndPalette, 0x0810F2E8
+.definelabel CopyItemName, 0x08099E90
 
 .definelabel GetMonData, 0x0803FBE8
 .definelabel SetMonData, 0x0804037C

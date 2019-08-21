@@ -5,7 +5,7 @@ void PlaySE(u16 songNum);
 void sub_8121CE4(u8* unk);
 void display_pokemon_menu_message(u32 id);
 void sub_811F818(u8 partyid, u8 unk);
-bool8 some_other_kind_of_link_test(u32 unk);
+bool8 some_other_kind_of_link_test();
 s8* get_pokesel();
 u16 PartyMenuButtonHandler(s8 *ptr);
 void sub_811FD88(u8 taskid, s8* pokesel);
@@ -18,7 +18,7 @@ void sub_8123270(u8 taskid);
 void sub_81231E8(u8 taskid);
 void DisplayPartyPokemonData(u8 taskid);
 
-u32 GetMonNick(struct Pokemon* pokemon, u8* dst);
+u8* GetMonNickname(struct Pokemon *mon, u8 *dest);
 u8 *StringExpandPlaceholders(u8 *dest, const u8 *src);
 void schedule_bg_copy_tilemap_to_vram(u8 bgid);
 void RenderPartyMenuBox(u8 slot);
@@ -39,6 +39,7 @@ void SetWindowTemplateFields(struct WindowTemplate* template, u8 priority, u8 ti
 u8 GetMenuCursorDimensionByFont(u8 fontId, u8 whichDimension);
 u8 choice_setup(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 numChoices, u8 initialCursorPos, u8 a7);
 u8 *StringAppend(u8 *dest, const u8 *src);
+void CopyItemName(u16 itemId, u8 *dst);
 
 u32 GetMonData(struct Pokemon*, u8);
 void* SetMonData(struct Pokemon*, u8, void*);

@@ -78,6 +78,7 @@ FD=\v
 0F=\h0F
 10=\h10
 16=\h16
+FC09=[closeonkeypress]
 FD02=[buffer1]
 FD03=[buffer2]
 FD04=[buffer3]

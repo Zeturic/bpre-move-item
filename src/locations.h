@@ -10,6 +10,8 @@ extern struct Struct203B09C* gUnknown_0203B09C;
 extern struct PaletteFadeControl gPaletteFade;
 
 extern u8 gStringVar1[];
+extern u8 gStringVar2[];
+extern u8 gStringVar3[];
 extern u8 gStringVar4[];
 
 extern u8 gText_PkmnNotHolding[];
@@ -33,3 +35,6 @@ extern const struct CursorOption sCursorOptions[];
 extern const u8 sFontColorTable[][3];
 
 extern const u8 gText_PauseUntilPress[];
+
+extern const u8 gText_XsYAnd[];
+extern const u8 gText_XsYWereSwapped[];
