@@ -1,8 +1,8 @@
 gText_Move:
     .string "MOVE"
 
-gText_MoveWhere:
-    .string "Move to where?"
+gText_MoveItemWhere:
+    .string "Move item to where?"
 
 gText_XsYAnd:
     .string "[buffer1]'s\n[buffer2] and\l"

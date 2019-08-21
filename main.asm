@@ -38,6 +38,6 @@
 .word gText_Move, CursorCb_MoveItem |1
 
 .org sActionStringTable + ACTION_STR_MOVE * 4
-.word gText_MoveWhere
+.word gText_MoveItemWhere
 
 .close
