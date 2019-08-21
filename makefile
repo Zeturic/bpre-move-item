@@ -20,7 +20,7 @@ TEST_SYM = $(TEST_GBA:%.gba=%.sym)
 
 GCC = $(DEVKITARM)/bin/arm-none-eabi-gcc
 GCC_DEFINES ?=
-GCC_FLAGS = -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c $(OPTIMIZATION_LEVEL) $(GCC_DEFINES)
+GCC_FLAGS = -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c $(OPTIMIZATION_LEVEL) $(GCC_DEFINES)
 
 LD = $(DEVKITARM)/bin/arm-none-eabi-ld
 LD_FLAGS = --relocatable
