@@ -1,6 +1,6 @@
 MENU_GIVE       equ 0x04
 MENU_TAKE_ITEM  equ 0x05
-MENU_MOVE       equ 0x12
+MENU_MOVE_ITEM       equ 0x12
 MENU_CANCEL2    equ 0x09
 
 ACTION_ITEM equ 0x8

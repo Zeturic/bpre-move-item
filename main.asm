@@ -21,7 +21,7 @@
     .thumb
 
     gUnknown_ItemMenuActions:
-        .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE, MENU_CANCEL2
+        .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE_ITEM, MENU_CANCEL2
 .endarea
 
 // expanded ITEM menu window template
@@ -34,7 +34,7 @@
 .org sActionTable + ACTION_ITEM * SIZEOF_PTR
 .word gUnknown_ItemMenuActions
 
-.org sCursorOptions + MENU_MOVE * SIZEOF_CURSOR_OPTION
+.org sCursorOptions + MENU_MOVE_ITEM * SIZEOF_CURSOR_OPTION
 .word gText_Move, CursorCb_MoveItem |1
 
 .org sActionStringTable + ACTION_STR_MOVE * 4
