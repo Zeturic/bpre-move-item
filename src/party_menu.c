@@ -1,4 +1,17 @@
 #include "global.h"
+#include "item.h"
+#include "main.h"
+#include "menu.h"
+#include "menu_helpers.h"
+#include "palette.h"
+#include "party_menu.h"
+#include "pokemon.h"
+#include "sound.h"
+#include "string_util.h"
+#include "strings.h"
+#include "task.h"
+#include "constants/items.h"
+#include "constants/songs.h"
 
 void CursorCb_MoveItemCallback(u8 taskId)
 {
@@ -7,24 +20,24 @@ void CursorCb_MoveItemCallback(u8 taskId)
     if (gPaletteFade.active || some_other_kind_of_link_test())
         return;
 
-    switch (PartyMenuButtonHandler(&gUnknown_0203B0A0.pokesel2))
+    switch (PartyMenuButtonHandler(&gUnknown_0203B0A0.unkA))
     {
     case 2:     // User hit B or A while on Cancel
-        sub_811FD88(taskId, &gUnknown_0203B0A0.pokesel2);
+        sub_811FD88(taskId, &gUnknown_0203B0A0.unkA);
         break;
     case 1:     // User hit A on a Pokemon
         PlaySE(SE_SELECT);
-        gUnknown_0203B0A0.field_B = 0;
+        gUnknown_0203B0A0.unkB = 0;
 
-        if (gUnknown_0203B0A0.slotId != gUnknown_0203B0A0.pokesel2)
+        if (gUnknown_0203B0A0.slotId != gUnknown_0203B0A0.unkA)
         {
             // look up held items
             u16 item1 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM);
-            u16 item2 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.pokesel2], MON_DATA_HELD_ITEM);
+            u16 item2 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM);
 
             // swap the held items
             SetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM, &item2);
-            SetMonData(&gPlayerParty[gUnknown_0203B0A0.pokesel2], MON_DATA_HELD_ITEM, &item1);
+            SetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM, &item1);
 
             // update the held item icons
             sub_81224B4(
@@ -33,14 +46,14 @@ void CursorCb_MoveItemCallback(u8 taskId)
             );
 
             sub_81224B4(
-                &gPlayerParty[gUnknown_0203B0A0.pokesel2],
-                &gUnknown_0203B0B4[gUnknown_0203B0A0.pokesel2]
+                &gPlayerParty[gUnknown_0203B0A0.unkA],
+                &gUnknown_0203B0B4[gUnknown_0203B0A0.unkA]
             );
 
             // create the string describing the move
             if (item2 == ITEM_NONE)
             {
-                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.pokesel2], gStringVar1);
+                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
                 CopyItemName(item1, gStringVar2);
                 StringExpandPlaceholders(gStringVar4, gText_PkmnWasGivenItem);
             }
@@ -51,7 +64,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
                 StringExpandPlaceholders(buffer, gText_XsYAnd);
 
                 StringAppend(buffer, gText_XsYWereSwapped);
-                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.pokesel2], gStringVar1);
+                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
                 CopyItemName(item2, gStringVar2);
                 StringExpandPlaceholders(gStringVar4, buffer);
             }
@@ -60,7 +73,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
             sub_81202F8(gStringVar4, 1);
 
             // update color of second selected box
-            sub_811F818(gUnknown_0203B0A0.pokesel2, 0);
+            sub_811F818(gUnknown_0203B0A0.unkA, 0);
         }
 
         // update color of first selected box
@@ -85,7 +98,7 @@ void CursorCb_MoveItem(u8 taskId)
 
     if (GetMonData(mon, MON_DATA_HELD_ITEM) != ITEM_NONE)
     {
-        gUnknown_0203B0A0.field_B = 8;
+        gUnknown_0203B0A0.unkB = 8;
 
         // show "Move item to where" in bottom left
         display_pokemon_menu_message(ACTION_STR_MOVE);
@@ -93,7 +106,7 @@ void CursorCb_MoveItem(u8 taskId)
         sub_811F818(gUnknown_0203B0A0.slotId, 1);
 
         // set up callback
-        gUnknown_0203B0A0.pokesel2 = gUnknown_0203B0A0.slotId;
+        gUnknown_0203B0A0.unkA = gUnknown_0203B0A0.slotId;
         gTasks[taskId].func = CursorCb_MoveItemCallback;
     }
     else

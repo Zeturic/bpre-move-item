@@ -7,6 +7,10 @@ ARMIPS_DEFINES = -equ ACTION_STR_MOVE $(ACTION_STR_MOVE)
 
 # ------------------------------------------------------------------------------
 
+OBJ = obj
+SRC = src
+INCLUDE = include
+
 OPTIMIZATION_LEVEL ?= -O2
 RESERVE ?= 0
 START_AT ?= 0x08800000
@@ -20,7 +24,7 @@ TEST_SYM = $(TEST_GBA:%.gba=%.sym)
 
 GCC = $(DEVKITARM)/bin/arm-none-eabi-gcc
 GCC_DEFINES ?=
-GCC_FLAGS = -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c $(OPTIMIZATION_LEVEL) $(GCC_DEFINES)
+GCC_FLAGS = -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c $(OPTIMIZATION_LEVEL) $(GCC_DEFINES) -I $(INCLUDE)
 
 LD = $(DEVKITARM)/bin/arm-none-eabi-ld
 LD_FLAGS = --relocatable
@@ -34,9 +38,6 @@ ARMIPS_FLAGS = -sym $(TEST_SYM) $(ARMIPS_DEFINES) -strequ ROM_GBA $(ROM_GBA) -st
 
 PYTHON ?= python
 FREESIA = $(PYTHON) scripts/freesia.py
-
-OBJ = obj
-SRC = src
 
 MAIN_ASM = main.asm
 RELOCATABLE_O = $(OBJ)/relocatable.o
