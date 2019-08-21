@@ -101,7 +101,7 @@ void CursorCb_MoveItem(u8 taskId)
         gUnknown_0203B0A0.unkB = 8;
 
         // show "Move item to where" in bottom left
-        display_pokemon_menu_message(ACTION_STR_MOVE);
+        display_pokemon_menu_message(MSG_MOVE);
         // update color of first selected box
         sub_811F818(gUnknown_0203B0A0.slotId, 1);
 

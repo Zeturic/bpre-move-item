@@ -2,8 +2,8 @@
 include config.mk
 include $(DEVKITARM)/gba_rules
 
-GCC_DEFINES = -D ACTION_STR_MOVE=$(ACTION_STR_MOVE)
-ARMIPS_DEFINES = -equ ACTION_STR_MOVE $(ACTION_STR_MOVE)
+GCC_DEFINES = -D MSG_MOVE=$(MSG_MOVE)
+ARMIPS_DEFINES = -equ MSG_MOVE $(MSG_MOVE)
 
 # ------------------------------------------------------------------------------
 
