@@ -15,6 +15,7 @@
 
 void CursorCb_MoveItemCallback(u8 taskId)
 {
+    u16 item1, item2;
     u8 buffer[100];
 
     if (gPaletteFade.active || some_other_kind_of_link_test())
@@ -26,57 +27,60 @@ void CursorCb_MoveItemCallback(u8 taskId)
         sub_811FD88(taskId, &gUnknown_0203B0A0.unkA);
         break;
     case 1:     // User hit A on a Pokemon
+        // Pokemon can't give away items to eggs or themselves
+        if (GetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_IS_EGG)
+            || gUnknown_0203B0A0.slotId == gUnknown_0203B0A0.unkA)
+        {
+            PlaySE(SE_I);
+            return;
+        }
+
         PlaySE(SE_SELECT);
         gUnknown_0203B0A0.unkB = 0;
 
-        if (gUnknown_0203B0A0.slotId != gUnknown_0203B0A0.unkA)
+        // look up held items
+        item1 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM);
+        item2 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM);
+
+        // swap the held items
+        SetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM, &item2);
+        SetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM, &item1);
+
+        // update the held item icons
+        sub_81224B4(
+            &gPlayerParty[gUnknown_0203B0A0.slotId],
+            &gUnknown_0203B0B4[gUnknown_0203B0A0.slotId]
+        );
+
+        sub_81224B4(
+            &gPlayerParty[gUnknown_0203B0A0.unkA],
+            &gUnknown_0203B0B4[gUnknown_0203B0A0.unkA]
+        );
+
+        // create the string describing the move
+        if (item2 == ITEM_NONE)
         {
-            // look up held items
-            u16 item1 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM);
-            u16 item2 = GetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM);
+            GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
+            CopyItemName(item1, gStringVar2);
+            StringExpandPlaceholders(gStringVar4, gText_PkmnWasGivenItem);
+        }
+        else
+        {
+            GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.slotId], gStringVar1);
+            CopyItemName(item1, gStringVar2);
+            StringExpandPlaceholders(buffer, gText_XsYAnd);
 
-            // swap the held items
-            SetMonData(&gPlayerParty[gUnknown_0203B0A0.slotId], MON_DATA_HELD_ITEM, &item2);
-            SetMonData(&gPlayerParty[gUnknown_0203B0A0.unkA], MON_DATA_HELD_ITEM, &item1);
-
-            // update the held item icons
-            sub_81224B4(
-                &gPlayerParty[gUnknown_0203B0A0.slotId],
-                &gUnknown_0203B0B4[gUnknown_0203B0A0.slotId]
-            );
-
-            sub_81224B4(
-                &gPlayerParty[gUnknown_0203B0A0.unkA],
-                &gUnknown_0203B0B4[gUnknown_0203B0A0.unkA]
-            );
-
-            // create the string describing the move
-            if (item2 == ITEM_NONE)
-            {
-                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
-                CopyItemName(item1, gStringVar2);
-                StringExpandPlaceholders(gStringVar4, gText_PkmnWasGivenItem);
-            }
-            else
-            {
-                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.slotId], gStringVar1);
-                CopyItemName(item1, gStringVar2);
-                StringExpandPlaceholders(buffer, gText_XsYAnd);
-
-                StringAppend(buffer, gText_XsYWereSwapped);
-                GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
-                CopyItemName(item2, gStringVar2);
-                StringExpandPlaceholders(gStringVar4, buffer);
-            }
-
-            // display the string
-            sub_81202F8(gStringVar4, 1);
-
-            // update color of second selected box
-            sub_811F818(gUnknown_0203B0A0.unkA, 0);
+            StringAppend(buffer, gText_XsYWereSwapped);
+            GetMonNickname(&gPlayerParty[gUnknown_0203B0A0.unkA], gStringVar1);
+            CopyItemName(item2, gStringVar2);
+            StringExpandPlaceholders(gStringVar4, buffer);
         }
 
-        // update color of first selected box
+        // display the string
+        sub_81202F8(gStringVar4, 1);
+
+        // update colors of selected boxes
+        sub_811F818(gUnknown_0203B0A0.unkA, 0);
         sub_811F818(gUnknown_0203B0A0.slotId, 1);
 
         // return to the main party menu

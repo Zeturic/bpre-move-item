@@ -1,7 +1,8 @@
 #pragma once
 
-#define MON_DATA_SPECIES    11
-#define MON_DATA_HELD_ITEM  12
+#define MON_DATA_SPECIES        11
+#define MON_DATA_HELD_ITEM      12
+#define MON_DATA_IS_EGG         45
 
 struct packed Pokemon
 {
