@@ -1,9 +1,9 @@
 .definelabel free_space, 0x08800000
 
-NUM_REGULAR_CURSOR_OPTIONS_OLD equ 18
-NUM_ADDITIONAL_REGULAR_CURSOR_OPTIONS equ 2
-
 NUM_FIELD_MOVE_CURSOR_OPTIONS equ 12
+
+NUM_REGULAR_CURSOR_OPTIONS_OLD equ 18
+NUM_ADDITIONAL_REGULAR_CURSOR_OPTIONS equ 1
 
 // -----------------------------------------------------------------------------
 
