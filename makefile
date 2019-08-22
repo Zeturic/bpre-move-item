@@ -29,6 +29,7 @@ SIZEFLAGS = -d -B
 ARMIPS ?= armips
 ARMIPS_FLAGS = -sym $(TEST_SYM) -equ MSG_MOVE $(MSG_MOVE)
 
+PYTHON ?= python
 FREESIA = $(PYTHON) scripts/freesia.py
 FREESIAFLAGS = --rom $(ROM_GBA) --start-at $(START_AT)
 
