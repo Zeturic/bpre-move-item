@@ -3,22 +3,12 @@ include $(DEVKITARM)/gba_rules
 
 # ------------------------------------------------------------------------------
 
-ROM_GBA = rom.gba
-TEST_GBA = test.gba
-TEST_SYM = test.sym
-
-MAIN_ASM = main.asm
-STRINGS_ASM = strings.asm
-CHARACTER_ENCODING_TBL = character-encoding.tbl
-
-RELOCATABLE_O = obj/relocatable.o
-
-SRC_FILES = src/party_menu.c
+SRC_FILES = src/party_menu.c src/strings.c
 OBJ_FILES = $(SRC_FILES:src/%.c=obj/%.o)
 ASM_HEADERS = $(wildcard *.s)
 
 CC = $(DEVKITARM)/bin/arm-none-eabi-gcc
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c -I include -D MSG_MOVE=$(MSG_MOVE)
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE)
 
 LD = $(DEVKITARM)/bin/arm-none-eabi-ld
 LDFLAGS = --relocatable
@@ -26,12 +16,14 @@ LDFLAGS = --relocatable
 SIZE = $(DEVKITARM)/bin/arm-none-eabi-size
 SIZEFLAGS = -d -B
 
+PREPROC = tools/preproc/preproc
+
 ARMIPS ?= armips
-ARMIPS_FLAGS = -sym $(TEST_SYM) -equ MSG_MOVE $(MSG_MOVE)
+ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE)
 
 PYTHON ?= python
-FREESIA = $(PYTHON) scripts/freesia.py
-FREESIAFLAGS = --rom $(ROM_GBA) --start-at $(START_AT)
+FREESIA = $(PYTHON) tools/freesia
+FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
 MSG_MOVE = 0x15
 RESERVE = 100
@@ -39,24 +31,28 @@ START_AT ?= 0x08800000
 
 # ------------------------------------------------------------------------------
 
-.PHONY: all clean
+.PHONY: all clean repoint-cursor-options
 
-all: $(RELOCATABLE_O) $(OBJ_FILES) $(TEST_GBA)
+all: test.gba
 
 clean:
-	rm -rf obj $(TEST_GBA) $(TEST_SYM)
+	rm -rf obj test.gba test.sym
 
 obj/%.o:
 	@mkdir -p obj
 	$(CC) $(CFLAGS) $< -o $@
 
-$(RELOCATABLE_O): $(OBJ_FILES)
+obj/strings.o: src/strings.c charmap.txt
+	@mkdir -p obj
+	$(PREPROC) $? | $(CC) $(CFLAGS) -o $@ -
+
+obj/relocatable.o: $(OBJ_FILES)
 	@mkdir -p obj
 	$(LD) $(LDFLAGS) $? -o $@ 
 
-$(TEST_GBA): $(ROM_GBA) $(MAIN_ASM) $(RELOCATABLE_O) $(ASM_HEADERS) $(STRINGS_ASM) $(CHARACTER_ENCODING_TBL)
-	$(eval NEEDED_BYTES = $(shell expr $(shell $(SIZE) $(SIZEFLAGS) $(RELOCATABLE_O) |  awk 'FNR == 2 {print $$4}') + $(RESERVE)))
-	$(ARMIPS) $(ARMIPS_FLAGS) $(MAIN_ASM) -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
+test.gba: rom.gba main.asm obj/relocatable.o $(ASM_HEADERS)
+	$(eval NEEDED_BYTES = $(shell expr $(shell $(SIZE) $(SIZEFLAGS) obj/relocatable.o |  awk 'FNR == 2 {print $$4}') + $(RESERVE)))
+	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
 
 repoint-cursor-options:
 	$(ARMIPS) repoint-cursor-options.asm

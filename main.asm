@@ -15,13 +15,6 @@
 .org allocation
 .area allocation_size
     .importobj "obj/relocatable.o"
-
-    .arm
-    .include "strings.asm"
-    .thumb
-
-    gUnknown_ItemMenuActions:
-        .byte MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE_ITEM, MENU_CANCEL2
 .endarea
 
 // expanded ITEM menu window template

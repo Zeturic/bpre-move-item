@@ -58,6 +58,7 @@ Temporary Items
 *.SNA
 *.stackdump
 *.ss*
+*.exe
 
 build
 obj

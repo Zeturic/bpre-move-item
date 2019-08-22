@@ -125,3 +125,5 @@ void CursorCb_MoveItem(u8 taskId)
         gTasks[taskId].func = sub_8123BF0;
     }
 }
+
+const u8 gUnknown_ItemMenuActions[] = {MENU_GIVE, MENU_TAKE_ITEM, MENU_MOVE_ITEM, MENU_CANCEL2};
