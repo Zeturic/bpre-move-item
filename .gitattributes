@@ -1,2 +1,2 @@
-scripts/*   linguist-vendored
+tools/*   linguist-vendored
 *.h   linguist-language=C
