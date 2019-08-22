@@ -1,4 +1,4 @@
-gText_Move:
+gMenuText_Move:
     .string "MOVE"
 
 gText_MoveItemWhere:

@@ -35,7 +35,7 @@
 .word gUnknown_ItemMenuActions
 
 .org sCursorOptions + MENU_MOVE_ITEM * SIZEOF_CURSOR_OPTION
-.word gText_Move, CursorCb_MoveItem |1
+.word gMenuText_Move, CursorCb_MoveItem |1
 
 .org sActionStringTable + MSG_MOVE * 4
 .word gText_MoveItemWhere
