@@ -4,8 +4,6 @@
 .include "macros.s"
 .include "constants.s"
 
-.loadtable "character-encoding.tbl"
-
 .open "rom.gba", "test.gba", 0x08000000
 
 .org allocation
