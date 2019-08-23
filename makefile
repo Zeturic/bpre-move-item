@@ -1,5 +1,6 @@
 #!/usr/bin/env make
 include $(DEVKITARM)/gba_rules
+include config.mk
 
 # ------------------------------------------------------------------------------
 
@@ -8,7 +9,7 @@ OBJ_FILES = $(SRC_FILES:src/%.c=obj/%.o)
 ASM_HEADERS = $(wildcard *.s)
 
 CC = $(DEVKITARM)/bin/arm-none-eabi-gcc
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE)
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
 
 LD = $(DEVKITARM)/bin/arm-none-eabi-ld
 LDFLAGS = --relocatable
@@ -19,14 +20,14 @@ SIZEFLAGS = -d -B
 PREPROC = tools/preproc/preproc
 
 ARMIPS ?= armips
-ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE)
+ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
 
 PYTHON ?= python
 FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
 MSG_MOVE = 0x15
-START_AT ?= 0x08800000
+START_AT ?= 0x0871A240
 
 # ------------------------------------------------------------------------------
 

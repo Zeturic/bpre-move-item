@@ -78,4 +78,5 @@ safeupdateptr 0x08122D48, sCursorOptionsOld, sCursorOptionsNew
 
 .if sCursorOptionsOld != free_space
     .notice "sCursorOptions has been moved from 0x" + tohex(sCursorOptionsOld) + " to 0x" + tohex(sCursorOptionsNew)
+    .notice "MENU_MOVE_ITEM = 0x" + tohex(NUM_REGULAR_CURSOR_OPTIONS_OLD, 2)
 .endif

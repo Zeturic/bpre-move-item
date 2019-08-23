@@ -4,7 +4,6 @@
 
 #define MENU_GIVE       0x04
 #define MENU_TAKE_ITEM  0x05
-#define MENU_MOVE_ITEM  0x12
 #define MENU_CANCEL2    0x09
 
 struct packed Struct203B0A0
