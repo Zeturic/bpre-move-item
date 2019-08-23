@@ -6,7 +6,6 @@
 .include "locations.s"
 
 .thumb
-.include "functions.s"
 
 .loadtable "character-encoding.tbl"
 

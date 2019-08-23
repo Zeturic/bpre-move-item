@@ -12,7 +12,7 @@ CC = $(DEVKITARM)/bin/arm-none-eabi-gcc
 CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
 
 LD = $(DEVKITARM)/bin/arm-none-eabi-ld
-LDFLAGS = --relocatable
+LDFLAGS = --relocatable -T rom.ld
 
 SIZE = $(DEVKITARM)/bin/arm-none-eabi-size
 SIZEFLAGS = -d -B
@@ -44,11 +44,11 @@ obj/%.o:
 
 obj/strings.o: src/strings.c charmap.txt
 	@mkdir -p obj
-	$(PREPROC) $? | $(CC) $(CFLAGS) -o $@ -
+	$(PREPROC) $^ | $(CC) $(CFLAGS) -o $@ -
 
-obj/relocatable.o: $(OBJ_FILES)
+obj/relocatable.o: $(OBJ_FILES) rom.ld
 	@mkdir -p obj
-	$(LD) $(LDFLAGS) $? -o $@ 
+	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $@
 
 test.gba: rom.gba main.asm obj/relocatable.o $(ASM_HEADERS)
 	$(eval NEEDED_BYTES = $(shell $(SIZE) $(SIZEFLAGS) obj/relocatable.o |  awk 'FNR == 2 {print $$4}'))
