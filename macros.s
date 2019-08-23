@@ -1,20 +1,7 @@
-.macro importm, filename, addr, size
-    .import filename, addr & 0x1FFFFFF, size
-.endmacro
-
-.macro updatebrmptr, addr
-    .if readu32(ORIGINAL_GBA, addr & 0x1FFFFFF) != sCursorOptionsOld
-        .error "Are you sure about the old location?"
-    .else
-        .org addr
-        .word sCursorOptionsNew
-    .endif
-.endmacro
-
 .macro window_template, bg, tilemap_left, tilemap_top, width, height, palette_num, base_block
     .byte bg, tilemap_left, tilemap_top, width, height, palette_num
     .halfword base_block
-.endmacro 
+.endmacro
 
 .macro safeupdateptr, addr, old, new
     .if readu32("rom.gba", addr & 0x1FFFFFF) != old
