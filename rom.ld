@@ -18,3 +18,23 @@ display_pokemon_menu_message = 0x08121D0C |1;
 sub_8121CE4 = 0x08121CE4 |1;
 sub_81224B4 = 0x081224B4 |1;
 sub_8123BF0 = 0x08123BF0 |1;
+
+/* -------------------------------------------------------------------------- */
+
+gStringVar1 = 0x02021CD0;
+gStringVar2 = 0x02021CF0;
+gStringVar4 = 0x02021D18;
+gPlayerParty = 0x02024284;
+gPaletteFade = 0x02037AB8;
+gUnknown_0203B09C = 0x0203B09C;
+gUnknown_0203B0A0 = 0x0203B0A0;
+gUnknown_0203B0B4 = 0x0203B0B4;
+
+gTasks = 0x03005090;
+
+gText_PkmnWasGivenItem = 0x08416C2A;
+gText_PkmnNotHolding = 0x08416C8F;
+gUnknown_0845A148 = 0x0845A148;
+sActionStringTable = 0x0845A2E8;
+sActionTable = 0x0845A72C;
+sListSizeTable = 0x0845A760;

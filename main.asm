@@ -1,11 +1,8 @@
 .gba
+.thumb
+
 .include "macros.s"
 .include "constants.s"
-
-.arm
-.include "locations.s"
-
-.thumb
 
 .loadtable "character-encoding.tbl"
 
@@ -33,3 +30,5 @@
 .word gText_MoveItemWhere
 
 .close
+
+.definelabel sCursorOptions, readu32("rom.gba", 0x08120F74 & 0x1FFFFFF)
