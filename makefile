@@ -26,7 +26,6 @@ FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
 MSG_MOVE = 0x15
-RESERVE = 100
 START_AT ?= 0x08800000
 
 # ------------------------------------------------------------------------------
@@ -51,7 +50,7 @@ obj/relocatable.o: $(OBJ_FILES)
 	$(LD) $(LDFLAGS) $? -o $@ 
 
 test.gba: rom.gba main.asm obj/relocatable.o $(ASM_HEADERS)
-	$(eval NEEDED_BYTES = $(shell expr $(shell $(SIZE) $(SIZEFLAGS) obj/relocatable.o |  awk 'FNR == 2 {print $$4}') + $(RESERVE)))
+	$(eval NEEDED_BYTES = $(shell $(SIZE) $(SIZEFLAGS) obj/relocatable.o |  awk 'FNR == 2 {print $$4}'))
 	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
 
 repoint-cursor-options:
