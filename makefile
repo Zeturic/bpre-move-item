@@ -23,10 +23,10 @@ SIZEFLAGS = -d -B
 
 PREPROC = tools/preproc/preproc
 
-ARMIPS ?= armips
+ARMIPS = armips
 ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
 
-PYTHON ?= python
+PYTHON = python
 FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
