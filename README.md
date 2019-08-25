@@ -10,7 +10,7 @@ This README is still a work in progress and may contain errors.
 
 First, you have to be using a POSIX shell, such as `bash`; the Windows Command Prompt and Powershell will not work. If you are on Windows, I highly recommend using [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10), though the MSYS2 that comes with an installation of devkitARM can also be used. If you're on Windows and want to use devkitARM's MSYS2, you can get the devkitARM Windows installer [here](https://github.com/devkitPro/installer/releases).
 
-You'll need `git`, `cmake`, `python`, and your distro's equivalent of `build-essential`.
+You'll need to install `git`, `cmake`, `python`, and your distro's equivalent of `build-essential`.
 
 For Ubuntu, this means running:
 
@@ -29,7 +29,11 @@ $ pacman -Sy base-devel git cmake python
 
 If you're on Windows and using the bundled MSYS2, devkitARM comes preinstalled so you should skip this section.
 
-You'll also need to install devkitARM. Installation instructions can be found [here](https://devkitpro.org/wiki/devkitPro_pacman#Installing_devkitPro_Pacman). For Ubuntu the following should work:
+You'll also need to install devkitARM.
+
+If you already have devkitARM, but aren't sure whether it's set up properly or not, just try running `$DEVKITARM/bin/arm-none-eabi-gcc --version`. If you get version information, it's installed and set up correctly and you can skip this section.
+
+Installation instructions can be found [here](https://devkitpro.org/wiki/devkitPro_pacman#Installing_devkitPro_Pacman), but for Ubuntu the following should work:
 
 ```shell
 $ wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
@@ -43,7 +47,11 @@ You can confirm everything installed properly by running `$DEVKITARM/bin/arm-non
 
 #### Armips
 
-You will need to have [Armips](https://github.com/Kingcom/armips) available in the `PATH`. You should already have everything you need to build `armips`; you can install `armips` with:
+You will need to have [Armips](https://github.com/Kingcom/armips) available in the `PATH`.
+
+If you already have Armips, but aren't sure whether it's set up properly or not, just try running `armips`. If you get usage info, it's set up correctly, and you can skip this section.
+
+Otherwise, you can download, build, and install `armips` with:
 
 ```shell
 $ cd ~
