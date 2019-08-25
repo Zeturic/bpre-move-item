@@ -34,6 +34,8 @@ MENU_FIELD_MOVES_NEW equ NUM_REGULAR_CURSOR_OPTIONS_NEW
 // populate the new cursor options table using the contents of the old one
 
 .org free_space
+.align 4
+
 sCursorOptionsNew:
     incbinm "rom.gba", sCursorOptionsOld, NUM_REGULAR_CURSOR_OPTIONS_OLD * SIZEOF_CURSOR_OPTION
     .fill NUM_ADDITIONAL_REGULAR_CURSOR_OPTIONS * SIZEOF_CURSOR_OPTION, 0
