@@ -10,19 +10,31 @@ This README is still a work in progress and may contain errors.
 
 First, you have to be using a POSIX shell, such as `bash`; the Windows Command Prompt and Powershell will not work. If you are on Windows, I highly recommend using [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10), though the MSYS2 that comes with an installation of devkitARM can also be used. If you're on Windows and want to use devkitARM's MSYS2, you can get the devkitARM Windows installer [here](https://github.com/devkitPro/installer/releases).
 
-You'll need `git`, `cmake`, `python`, `nano`, and your distro's equivalent of `build-essential`. For Ubuntu, this means `sudo apt install build-essential git cmake python nano`; for MSYS2 it's `pacman -Sy base-devel git cmake python nano`.
+You'll need `git`, `cmake`, `python`, and your distro's equivalent of `build-essential`.
+
+For Ubuntu, this means running:
+
+```shell
+$ sudo apt update
+$ sudo apt install build-essential git cmake python
+```
+
+For MSYS2 it's:
+
+```shell
+$ pacman -Sy base-devel git cmake python
+```
 
 #### devkitARM
 
-If you're on Windows and using the bundled MSYS2, devkitARM comes preinstalled so skip this section.
+If you're on Windows and using the bundled MSYS2, devkitARM comes preinstalled so you should skip this section.
 
-You'll also need to install devkitARM. Installation instructions can be found [here](https://devkitpro.org/wiki/devkitPro_pacman#Installing_devkitPro_Pacman). For Ubuntu the following should work (skip the first command if it's not a WSL Ubuntu install):
+You'll also need to install devkitARM. Installation instructions can be found [here](https://devkitpro.org/wiki/devkitPro_pacman#Installing_devkitPro_Pacman). For Ubuntu the following should work:
 
 ```shell
-$ sudo ln -s /proc/self/mounts /etc/mtab
 $ wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
 $ sudo dpkg -i devkitpro-pacman.deb
-$ dkp-pacman -Sy gba-dev
+$ sudo dkp-pacman -Sy gba-dev
 $ printf 'export DEVKITPRO=/opt/devkitpro\nexport DEVKITARM=${DEVKITPRO}/devkitARM\nexport PATH=${DEVKITPRO}/tools/bin:$PATH' >> ~/.bash_profile
 $ source ~/.bash_profile
 ```
@@ -42,7 +54,7 @@ $ make
 $ cp ./armips /usr/local/bin/armips
 ```
 
-That last command may require root privileges (e.g. `sudo cp ./armips /usr/local/bin/armips`) depending on your machine. You can confirm that it's setup correctly by attempting to run `armips`; if you get usage info, it's set up correctly.
+That last command may require root privileges (e.g. `sudo cp ./armips /usr/local/bin/armips`) depending on your machine. You can confirm that it's set up correctly by attempting to run `armips`; if you get usage info, it's set up correctly.
 
 ### Setup
 
@@ -50,10 +62,11 @@ That last command may require root privileges (e.g. `sudo cp ./armips /usr/local
 
 Now we can /finally/ download and start configuring this repository.
 
-If you're using WSL, your `C:` drive is mounted as `/mnt/c`. Future steps will require access to a text editor, so unless you're comfortable with a terminal text editor, you should clone the repo on your `C:` drive. For example, if you wanted to download this repo to `C:\Users\Nate\RomHacking`, you would do:
+In your terminal, navigate to whatever folder you want to download this repo into. If you're using WSL, you can navigate to the folder using Windows Explorer, and then `shift + right click` and select `Open Linux shell here`.
+
+Then, do the following to download the repo and build Preproc:
 
 ```shell
-$ cd /mnt/c/Users/Nate/RomHacking
 $ git clone https://github.com/Zeturic/mvitem.git
 $ cd mvitem
 $ make -C tools/preproc
@@ -62,8 +75,6 @@ $ make -C tools/preproc
 #### Adding your ROM
 
 Copy your ROM to this directory and rename it `rom.gba`.
-
-In the above WSL example, you would navigate to `C:\Users\Nate\RomHacking\mvitem` in Windows Explorer and put your ROM there.
 
 #### Repointing sCursorOptions
 
@@ -87,11 +98,11 @@ Your ROM will be modified in place, and it'll give you output describing what it
 
 #### Building the project itself
 
-Open `config.mk` in the text editor of your choice.
+Unlike in the previous step, the build system is smart enough to find enough free space on its own.
 
-Update the definition of `START_AT`. Unlike in the previous step, the build system is smart enough to find enough free space on its own; `START_AT` is only there to tell it where to start looking. If the given address is acceptable (i.e. is word-aligned and has enough bytes of free space), it will be inserted there.
+However, if you want the code to be inserted at a particular address, you can specify it by updating the definition of `START_AT` in `config.mk`; if the given address is acceptable (i.e. is word-aligned and has enough bytes of free space), it will be inserted there. Otherwise, it will just use `START_AT` to determine where in the ROM it should start looking for free space.
 
-If you want to edit the strings involved in this feature - for example, to decapitalize `MOVE` to `Move` - they can be found and modified by opening `src/strings.c` in a text editor.
+If you want to edit the strings involved in this feature - for example, to decapitalize `MOVE` to `Move` - they can be found and modified in `src/strings.c`.
 
 Once you're ready, run the following to build the project:
 
@@ -103,4 +114,4 @@ Also unlike the previous step, this won't actually modify `rom.gba`, instead you
 
 ### Credits
 
-The project structure, `charmap.txt` and `Preproc` are all from `pokeemerald`.
+The project structure, `charmap.txt` and `Preproc` are all from [pokeemerald](https://github.com/pret/pokeemerald).
