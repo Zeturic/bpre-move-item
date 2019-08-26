@@ -2,77 +2,13 @@
 
 Black and White 2 introduced a feature where you can move items directly between two Pokémon in your party from within the party menu, rather than having to use the bag as middle man. This ports that feature to FR ROMs.
 
-This README is still a work in progress and may contain errors.
+### Build Instructions
 
-### Prerequisites
-
-#### Shell and basic tools
-
-First, you have to be using a POSIX shell, such as `bash`; the Windows Command Prompt and Powershell will not work. If you are on Windows, I highly recommend using [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10), though the MSYS2 that comes with an installation of devkitARM can also be used. If you're on Windows and want to use devkitARM's MSYS2, you can get the devkitARM Windows installer [here](https://github.com/devkitPro/installer/releases).
-
-You'll need to install `git`, `cmake`, `python`, and your distro's equivalent of `build-essential`.
-
-For Ubuntu, this means running:
-
-```shell
-$ sudo apt update
-$ sudo apt install build-essential git cmake python
-```
-
-For MSYS2 it's:
-
-```shell
-$ pacman -Sy base-devel git cmake python
-```
-
-#### devkitARM
-
-If you're on Windows and using the bundled MSYS2, devkitARM comes preinstalled so you should skip this section.
-
-You'll also need to install devkitARM.
-
-If you already have devkitARM, but aren't sure whether it's set up properly or not, just try running `$DEVKITARM/bin/arm-none-eabi-gcc --version`. If you get version information, it's installed and set up correctly and you can skip this section.
-
-Installation instructions can be found [here](https://devkitpro.org/wiki/devkitPro_pacman#Installing_devkitPro_Pacman), but for Ubuntu the following should work:
-
-```shell
-$ wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
-$ sudo dpkg -i devkitpro-pacman.deb
-$ sudo dkp-pacman -Sy gba-dev
-$ printf 'export DEVKITPRO=/opt/devkitpro\nexport DEVKITARM=${DEVKITPRO}/devkitARM\nexport PATH=${DEVKITPRO}/tools/bin:$PATH' >> ~/.bash_profile
-$ source ~/.bash_profile
-```
-
-You can confirm everything installed properly by running `$DEVKITARM/bin/arm-none-eabi-gcc --version`. If you get version information, it's correct.
-
-#### Armips
-
-You will need to have [Armips](https://github.com/Kingcom/armips) available in the `PATH`.
-
-If you already have Armips, but aren't sure whether it's set up properly or not, just try running `armips`. If you get usage info, it's set up correctly, and you can skip this section.
-
-Otherwise, you can download, build, and install `armips` with:
-
-```shell
-$ cd ~
-$ git clone https://github.com/Kingcom/armips.git
-$ mkdir armips/build && cd armips/build
-$ cmake -DCMAKE_BUILD_TYPE=Release ..
-$ make
-$ cp ./armips /usr/local/bin/armips
-```
-
-That last command may require root privileges (e.g. `sudo cp ./armips /usr/local/bin/armips`) depending on your machine. You can confirm that it's set up correctly by attempting to run `armips`; if you get usage info, it's set up correctly.
-
-### Setup
+See [here](https://gist.github.com/Zeturic/db1611cc7b17c3140f9b9af32e1b596b) for the prequisites and help in installing them.
 
 #### Cloning the repo and building Preproc
 
-Now we can /finally/ download and start configuring this repository.
-
-In your terminal, navigate to whatever folder you want to download this repo into. If you're using WSL, you can navigate to the folder using Windows Explorer, and then `shift + right click` and select `Open Linux shell here`.
-
-Then, do the following to download the repo and build Preproc:
+Open your terminal to whatever folder you want to download this repo into. Then, do the following to download the repo and build Preproc:
 
 ```shell
 $ git clone https://github.com/Zeturic/mvitem.git
