@@ -2,6 +2,8 @@
 
 Black and White 2 introduced a feature where you can move items directly between two Pokémon in your party from within the party menu, rather than having to use the bag as middle man. This ports that feature to FR ROMs.
 
+![](bpre-move-item.gif)
+
 ### Build Instructions
 
 See [here](https://gist.github.com/Zeturic/db1611cc7b17c3140f9b9af32e1b596b) for the prequisites and help in installing them.
