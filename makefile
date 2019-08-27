@@ -13,7 +13,7 @@ SRC_FILES = src/party_menu.c src/strings.c
 OBJ_FILES = $(SRC_FILES:src/%.c=build/%.o)
 ASM_HEADERS = $(wildcard *.s)
 
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -Werror -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
 
 LD = $(PREFIX)ld
 LDFLAGS = --relocatable -T rom.ld
