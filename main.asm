@@ -8,7 +8,7 @@
 
 .org allocation
 .area allocation_size
-    .importobj "obj/relocatable.o"
+    .importobj "build/linked.o"
 .endarea
 
 // expanded ITEM menu window template
