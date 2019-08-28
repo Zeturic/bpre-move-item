@@ -35,12 +35,17 @@ START_AT ?= 0x0871A240
 
 # ------------------------------------------------------------------------------
 
-.PHONY: all clean repoint-cursor-options
+.PHONY: all spotless clean clean-tools repoint-cursor-options
 
 all: test.gba
 
+spotless: clean clean-tools
+
 clean:
 	rm -rf build test.gba test.sym
+
+clean-tools:
+	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
 
 build/%.o:
 	@mkdir -p build

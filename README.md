@@ -15,7 +15,7 @@ Open your terminal to whatever folder you want to download this repo into. Then,
 ```shell
 $ git clone https://github.com/Zeturic/bpre-move-item.git
 $ cd bpre-move-item
-$ make -C tools/preproc
+$ ./build_tools.sh
 ```
 
 #### Adding your ROM
