@@ -48,6 +48,14 @@ clean:
 clean-tools:
 	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
 
+repoint-cursor-options:
+	$(ARMIPS) repoint-cursor-options.asm
+
+md5: test.gba
+	@md5sum test.gba
+
+# ------------------------------------------------------------------------------
+
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
 	$(PREPROC) $< charmap.txt | $(CC) $(CFLAGS) -o $@ -
@@ -59,12 +67,6 @@ build/linked.o: $(OBJ_FILES) rom.ld
 test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
 	$(eval NEEDED_BYTES = $(shell PATH="$(PATH)" $(SIZE) $(SIZEFLAGS) build/linked.o |  awk 'FNR == 2 {print $$4}'))
 	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
-
-repoint-cursor-options:
-	$(ARMIPS) repoint-cursor-options.asm
-
-md5: test.gba
-	@md5sum test.gba
 
 build/dep/src/%.d: src/%.c
 	@mkdir -p build/dep/src
