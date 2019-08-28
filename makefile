@@ -22,6 +22,7 @@ SIZE = $(PREFIX)size
 SIZEFLAGS = -d -B
 
 PREPROC = tools/preproc/preproc
+SCANINC = tools/scaninc/scaninc
 
 ARMIPS ?= armips
 ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
@@ -63,13 +64,10 @@ repoint-cursor-options:
 	$(ARMIPS) repoint-cursor-options.asm
 
 md5: test.gba
-	md5sum test.gba
+	@md5sum test.gba
 
 build/dep/src/%.d: src/%.c
 	@mkdir -p build/dep/src
-	@set -e; rm -f $@; \
-	$(CC) -MT $(@:build/dep/src/%.d=build/src/%.o) -M $(CFLAGS) $< > $@.$$$$; \
-	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
-	rm -f $@.$$$$
+	@$(SCANINC) -I include $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > $@
 
 include $(SRC_FILES:src/%.c=build/dep/src/%.d)
