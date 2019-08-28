@@ -11,7 +11,7 @@ include config.mk
 
 SRC_FILES = src/party_menu.c src/strings.c
 OBJ_FILES = $(SRC_FILES:src/%.c=build/%.o)
-ASM_HEADERS = $(wildcard *.s)
+MAIN_ASM_INCLUDES = $(wildcard *.s)
 
 CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
 
@@ -35,7 +35,7 @@ START_AT ?= 0x0871A240
 
 # ------------------------------------------------------------------------------
 
-.PHONY: all spotless clean clean-tools repoint-cursor-options
+.PHONY: all spotless clean clean-tools repoint-cursor-options md5
 
 all: test.gba
 
@@ -59,12 +59,15 @@ build/linked.o: $(OBJ_FILES) rom.ld
 	@mkdir -p build
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $@
 
-test.gba: rom.gba main.asm build/linked.o $(ASM_HEADERS)
+test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
 	$(eval NEEDED_BYTES = $(shell PATH="$(PATH)" $(SIZE) $(SIZEFLAGS) build/linked.o |  awk 'FNR == 2 {print $$4}'))
 	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
 
 repoint-cursor-options:
 	$(ARMIPS) repoint-cursor-options.asm
+
+md5: test.gba
+	md5sum test.gba
 
 build/%.d: src/%.c
 	@mkdir -p build
