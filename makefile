@@ -9,8 +9,8 @@ include config.mk
 
 # ------------------------------------------------------------------------------
 
-SRC_FILES = src/party_menu.c src/strings.c
-OBJ_FILES = $(SRC_FILES:src/%.c=build/%.o)
+SRC_FILES = $(wildcard src/*.c)
+OBJ_FILES = $(SRC_FILES:src/%.c=build/src/%.o)
 MAIN_ASM_INCLUDES = $(wildcard *.s)
 
 CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=c11 -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
@@ -47,16 +47,16 @@ clean:
 clean-tools:
 	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
 
-build/%.o:
-	@mkdir -p build
+build/src/%.o:
+	@mkdir -p build/src
 	$(CC) $(CFLAGS) $< -o $@
 
-build/strings.o: src/strings.c charmap.txt
-	@mkdir -p build
+build/src/strings.o: src/strings.c charmap.txt
+	@mkdir -p build/src
 	$(PREPROC) $^ | $(CC) $(CFLAGS) -o $@ -
 
 build/linked.o: $(OBJ_FILES) rom.ld
-	@mkdir -p build
+	@mkdir -p build/src
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $@
 
 test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
@@ -69,11 +69,11 @@ repoint-cursor-options:
 md5: test.gba
 	md5sum test.gba
 
-build/%.d: src/%.c
-	@mkdir -p build
+build/dep/src/%.d: src/%.c
+	@mkdir -p build/dep/src
 	@set -e; rm -f $@; \
-	$(CC) -MT $(@:%.d=%.o) -M $(CFLAGS) $< > $@.$$$$; \
+	$(CC) -MT $(@:build/dep/src/%.d=build/src/%.o) -M $(CFLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
-include build/party_menu.d
+include build/dep/src/party_menu.d
