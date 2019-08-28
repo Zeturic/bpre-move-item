@@ -47,16 +47,12 @@ clean:
 clean-tools:
 	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
 
-build/src/%.o:
+build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
-	$(CC) $(CFLAGS) $< -o $@
-
-build/src/strings.o: src/strings.c charmap.txt
-	@mkdir -p build/src
-	$(PREPROC) $^ | $(CC) $(CFLAGS) -o $@ -
+	$(PREPROC) $< charmap.txt | $(CC) $(CFLAGS) -o $@ -
 
 build/linked.o: $(OBJ_FILES) rom.ld
-	@mkdir -p build/src
+	@mkdir -p build
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $@
 
 test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
@@ -76,4 +72,4 @@ build/dep/src/%.d: src/%.c
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
-include build/dep/src/party_menu.d
+include $(SRC_FILES:src/%.c=build/dep/src/%.d)
