@@ -58,11 +58,11 @@ md5: test.gba
 
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
-	$(PREPROC) $< charmap.txt | $(CC) $(CFLAGS) -o $@ -
+	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -o "$@" -
 
 build/linked.o: $(OBJ_FILES) rom.ld
 	@mkdir -p build
-	$(LD) $(LDFLAGS) $(OBJ_FILES) -o $@
+	$(LD) $(LDFLAGS) $(OBJ_FILES) -o "$@"
 
 test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
 	$(eval NEEDED_BYTES = $(shell PATH="$(PATH)" $(SIZE) $(SIZEFLAGS) build/linked.o |  awk 'FNR == 2 {print $$4}'))
@@ -70,6 +70,6 @@ test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
 
 build/dep/src/%.d: src/%.c
 	@mkdir -p build/dep/src
-	@$(SCANINC) -I include $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > $@
+	@$(SCANINC) -I include $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > "$@"
 
 include $(SRC_FILES:src/%.c=build/dep/src/%.d)
