@@ -1,2 +1,5 @@
 tools/*   linguist-vendored
 *.h   linguist-language=C
+*.inc   linguist-language=assembly
+makefile   linguist-vendored
+build_tools.sh   linguist-vendored
