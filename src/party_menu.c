@@ -4,7 +4,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "palette.h"
-#include "party_menu.h"
+#include "party_menu.c.h"
 #include "pokemon.h"
 #include "sound.h"
 #include "string_util.h"
