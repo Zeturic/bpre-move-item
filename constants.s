@@ -1,4 +1,4 @@
-ACTION_ITEM equ 0x8
+ACTIONS_ITEM equ 0x8
 
 SIZEOF_U8 equ 1
 SIZEOF_PTR equ 4

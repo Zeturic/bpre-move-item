@@ -13,7 +13,7 @@ SRC_FILES = $(wildcard src/*.c)
 OBJ_FILES = $(SRC_FILES:src/%.c=build/src/%.o)
 MAIN_ASM_INCLUDES = $(wildcard *.s)
 
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -D MSG_MOVE=$(MSG_MOVE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -I gflib -D PARTY_MSG_MOVE_ITEM_WHERE=$(PARTY_MSG_MOVE_ITEM_WHERE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
 
 LD = $(PREFIX)ld
 LDFLAGS = --relocatable -T rom.ld
@@ -25,13 +25,13 @@ PREPROC = tools/preproc/preproc
 SCANINC = tools/scaninc/scaninc
 
 ARMIPS ?= armips
-ARMIPS_FLAGS = -sym test.sym -equ MSG_MOVE $(MSG_MOVE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
+ARMIPS_FLAGS = -sym test.sym -equ PARTY_MSG_MOVE_ITEM_WHERE $(PARTY_MSG_MOVE_ITEM_WHERE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
 
 PYTHON ?= python
 FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
-MSG_MOVE = 0x15
+PARTY_MSG_MOVE_ITEM_WHERE = 0x15
 START_AT ?= 0x0871A240
 
 # ------------------------------------------------------------------------------

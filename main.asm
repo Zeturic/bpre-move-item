@@ -12,19 +12,19 @@
 .endarea
 
 // expanded ITEM menu window template
-.org gUnknown_0845A148
-    window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
+.org sItemGiveTakeWindowTemplate
+window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
 
-.org sListSizeTable + ACTION_ITEM * SIZEOF_U8
+.org sPartyMenuActionCounts + ACTIONS_ITEM * SIZEOF_U8
 .byte 4
 
-.org sActionTable + ACTION_ITEM * SIZEOF_PTR
-.word gUnknown_ItemMenuActions
+.org sPartyMenuActions + ACTIONS_ITEM * SIZEOF_PTR
+.word sPartyMenuAction_GiveTakeItemCancel
 
 .org sCursorOptions + MENU_MOVE_ITEM * SIZEOF_CURSOR_OPTION
 .word gMenuText_Move, CursorCb_MoveItem |1
 
-.org sActionStringTable + MSG_MOVE * 4
+.org sActionStringTable + PARTY_MSG_MOVE_ITEM_WHERE * 4
 .word gText_MoveItemWhere
 
 .close
