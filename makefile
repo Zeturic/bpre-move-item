@@ -6,17 +6,20 @@ endif
 
 include $(DEVKITARM)/base_tools
 include config.mk
+include project.mk
 
 # ------------------------------------------------------------------------------
 
-SRC_FILES = $(wildcard src/*.c)
-OBJ_FILES = $(SRC_FILES:src/%.c=build/src/%.o)
-MAIN_ASM_INCLUDES = $(wildcard *.s)
+SRC_FILES ?= $(wildcard src/*.c)
+OBJ_FILES ?= $(SRC_FILES:src/%.c=build/src/%.o)
+MAIN_ASM_INCLUDES ?= $(wildcard *.s)
 
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -I include -I gflib -D PARTY_MSG_MOVE_ITEM_WHERE=$(PARTY_MSG_MOVE_ITEM_WHERE) -D MENU_MOVE_ITEM=$(MENU_MOVE_ITEM)
+HEADER_DIRS ?= -I include -I gflib
+
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c $(HEADER_DIRS) $(EXTRA_CFLAGS)
 
 LD = $(PREFIX)ld
-LDFLAGS = --relocatable -T rom.ld
+LDFLAGS = --relocatable -T rom.ld $(EXTRA_LDFLAGS)
 
 SIZE = $(PREFIX)size
 SIZEFLAGS = -d -B
@@ -25,18 +28,15 @@ PREPROC = tools/preproc/preproc
 SCANINC = tools/scaninc/scaninc
 
 ARMIPS ?= armips
-ARMIPS_FLAGS = -sym test.sym -equ PARTY_MSG_MOVE_ITEM_WHERE $(PARTY_MSG_MOVE_ITEM_WHERE) -equ MENU_MOVE_ITEM $(MENU_MOVE_ITEM)
+ARMIPS_FLAGS = -sym test.sym $(EXTRA_ARMIPS_FLAGS)
 
 PYTHON ?= python
 FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
-PARTY_MSG_MOVE_ITEM_WHERE = 0x15
-START_AT ?= 0x0871A240
-
 # ------------------------------------------------------------------------------
 
-.PHONY: all spotless clean clean-tools repoint-cursor-options md5
+.PHONY: all spotless clean clean-tools md5
 
 all: test.gba
 
@@ -47,9 +47,6 @@ clean:
 
 clean-tools:
 	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
-
-repoint-cursor-options:
-	$(ARMIPS) repoint-cursor-options.asm
 
 md5: test.gba
 	@md5sum test.gba
@@ -70,6 +67,6 @@ test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
 
 build/dep/src/%.d: src/%.c
 	@mkdir -p build/dep/src
-	@$(SCANINC) -I include $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > "$@"
+	@$(SCANINC) $(HEADER_DIRS) $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > "$@"
 
 include $(SRC_FILES:src/%.c=build/dep/src/%.d)
