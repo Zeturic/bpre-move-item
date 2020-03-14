@@ -53,6 +53,12 @@ md5: test.gba
 
 # ------------------------------------------------------------------------------
 
+build/linked.sz: build/linked.o
+	$(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}' > "$@"
+
+build/linked.alloc: rom.gba build/linked.sz
+	$(FREESIA) $(FREESIAFLAGS) --needed-bytes $(shell cat build/linked.sz) > "$@"
+
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
 	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -o "$@" -
@@ -61,9 +67,8 @@ build/linked.o: $(OBJ_FILES) rom.ld
 	@mkdir -p build
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o "$@"
 
-test.gba: rom.gba main.asm build/linked.o $(MAIN_ASM_INCLUDES)
-	$(eval NEEDED_BYTES = $(shell PATH="$(PATH)" $(SIZE) $(SIZEFLAGS) build/linked.o |  awk 'FNR == 2 {print $$4}'))
-	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell $(FREESIA) $(FREESIAFLAGS) --needed-bytes $(NEEDED_BYTES)) -equ allocation_size $(NEEDED_BYTES)
+test.gba: rom.gba main.asm build/linked.o build/linked.sz build/linked.alloc $(MAIN_ASM_INCLUDES)
+	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell cat build/linked.alloc) -equ allocation_size $(shell cat build/linked.sz)
 
 build/dep/src/%.d: src/%.c
 	@mkdir -p build/dep/src
