@@ -36,6 +36,8 @@ FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
 # ------------------------------------------------------------------------------
 
+.DEFAULT_GOAL = all
+
 .PHONY: all spotless clean clean-tools md5
 
 all: test.gba
@@ -43,7 +45,7 @@ all: test.gba
 spotless: clean clean-tools
 
 clean:
-	rm -rf build test.gba test.sym
+	rm -rf build test.gba test.sym $(CLEANABLE_FILES)
 
 clean-tools:
 	+BUILD_TOOLS_TARGET=clean ./build_tools.sh
