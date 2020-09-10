@@ -24,8 +24,8 @@ LDFLAGS = --relocatable -T rom.ld $(EXTRA_LDFLAGS)
 SIZE = $(PREFIX)size
 SIZEFLAGS = -d -B
 
-PREPROC = tools/preproc/preproc
-SCANINC = tools/scaninc/scaninc
+PREPROC ?= tools/preproc/preproc
+SCANINC ?= tools/scaninc/scaninc
 
 ARMIPS ?= armips
 ARMIPS_FLAGS = -sym test.sym $(EXTRA_ARMIPS_FLAGS)
