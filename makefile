@@ -16,7 +16,7 @@ MAIN_ASM_INCLUDES ?= $(wildcard *.s)
 
 HEADER_DIRS ?= -I include -I gflib
 
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c $(HEADER_DIRS) $(EXTRA_CFLAGS)
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -x c -c -MMD $(HEADER_DIRS) $(EXTRA_CFLAGS)
 
 LD = $(PREFIX)ld
 LDFLAGS = --relocatable -T rom.ld $(EXTRA_LDFLAGS)
@@ -25,7 +25,6 @@ SIZE = $(PREFIX)size
 SIZEFLAGS = -d -B
 
 PREPROC ?= tools/preproc/preproc
-SCANINC ?= tools/scaninc/scaninc
 
 ARMIPS ?= armips
 ARMIPS_FLAGS = -sym test.sym $(EXTRA_ARMIPS_FLAGS)
@@ -63,7 +62,7 @@ build/linked.alloc: rom.gba build/linked.sz
 
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
-	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -o "$@" -
+	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -MF "$(@:%.o=%.d)" -MT "$@" -o "$@" -
 
 build/linked.o: $(OBJ_FILES) rom.ld
 	@mkdir -p build
@@ -72,8 +71,4 @@ build/linked.o: $(OBJ_FILES) rom.ld
 test.gba: rom.gba main.asm build/linked.o build/linked.sz build/linked.alloc $(MAIN_ASM_INCLUDES)
 	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell cat build/linked.alloc) -equ allocation_size $(shell cat build/linked.sz)
 
-build/dep/src/%.d: src/%.c
-	@mkdir -p build/dep/src
-	@$(SCANINC) $(HEADER_DIRS) $< | awk '{print "$(<:src/%.c=build/src/%.o) $@ : "$$0}' > "$@"
-
-include $(SRC_FILES:src/%.c=build/dep/src/%.d)
+-include $(SRC_FILES:src/%.c=build/src/%.d)
