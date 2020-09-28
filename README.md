@@ -8,14 +8,13 @@ Black and White 2 introduced a feature where you can move items directly between
 
 See [here](https://gist.github.com/Zeturic/db1611cc7b17c3140f9b9af32e1b596b) for the prequisites and help in installing them.
 
-#### Cloning the repo and building the tools
+#### Cloning the repo
 
 Open your terminal to whatever folder you want to download this repo into. Then, do the following to download the repo and build the included tools:
 
 ```shell
 $ git clone https://github.com/Zeturic/bpre-move-item.git
 $ cd bpre-move-item
-$ ./build_tools.sh
 ```
 
 #### Adding your ROM
@@ -60,4 +59,4 @@ Also unlike the previous step, this won't actually modify `rom.gba`, instead you
 
 ### Credits
 
-The project structure, `charmap.txt` and `Preproc` are all from [pokeemerald](https://github.com/pret/pokeemerald).
+The project structure and some of the build tools are from [pokeemerald](https://github.com/pret/pokeemerald).
