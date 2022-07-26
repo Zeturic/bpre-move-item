@@ -11,9 +11,9 @@
     .importobj "build/linked.o"
 .endarea
 
-// expanded ITEM menu window template
-.org sItemGiveTakeWindowTemplate
-window_template 0x02, 0x16, 0x0B, 0x07, 0x08, 0x0E, 0x373
+// adjust size of the ITEM menu window template
+.org sItemGiveTakeWindowTemplate + 1
+.byte 22, 11, 7, 8
 
 .org sPartyMenuActionCounts + ACTIONS_ITEM * SIZEOF_U8
 .byte 4
