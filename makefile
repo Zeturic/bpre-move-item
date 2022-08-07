@@ -29,7 +29,7 @@ PRET_PREPROC ?= pret-preproc
 ARMIPS ?= armips
 ARMIPS_FLAGS = -sym test.sym $(EXTRA_ARMIPS_FLAGS)
 
-PYTHON ?= python
+PYTHON ?= python3
 FREESIA = $(PYTHON) tools/freesia
 FREESIAFLAGS = --rom rom.gba --start-at $(START_AT)
 
