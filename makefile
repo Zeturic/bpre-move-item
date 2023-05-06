@@ -50,7 +50,7 @@ md5: test.gba
 # ------------------------------------------------------------------------------
 
 build/linked.sz: build/linked.o
-	$(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}' > "$@"
+	echo "$(shell $(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}') + 8" | bc > "$@"
 
 build/linked.alloc: rom.gba build/linked.sz
 	$(FREESIA) $(FREESIAFLAGS) --needed-bytes $(shell cat build/linked.sz) > "$@"
