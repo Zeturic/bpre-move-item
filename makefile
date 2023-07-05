@@ -50,10 +50,10 @@ md5: test.gba
 # ------------------------------------------------------------------------------
 
 build/linked.sz: build/linked.o
-	echo "$(shell $(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}') + 8" | bc > "$@"
+	echo "`$(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}'` + 8" | bc > "$@"
 
 build/linked.alloc: rom.gba build/linked.sz
-	$(FREESIA) $(FREESIAFLAGS) --needed-bytes $(shell cat build/linked.sz) > "$@"
+	$(FREESIA) $(FREESIAFLAGS) --needed-bytes `cat build/linked.sz` > "$@"
 
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
@@ -64,6 +64,9 @@ build/linked.o: $(OBJ_FILES) rom.ld
 	$(LD) $(LDFLAGS) $(OBJ_FILES) -o "$@"
 
 test.gba: rom.gba main.asm build/linked.o build/linked.sz build/linked.alloc $(MAIN_ASM_INCLUDES)
-	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation $(shell cat build/linked.alloc) -equ allocation_size $(shell cat build/linked.sz)
+	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation `cat build/linked.alloc` -equ allocation_size `cat build/linked.sz`
+
+wow:
+	@echo $(SIZE)
 
 -include $(SRC_FILES:src/%.c=build/src/%.d)
