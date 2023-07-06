@@ -66,7 +66,4 @@ build/linked.o: $(OBJ_FILES) rom.ld
 test.gba: rom.gba main.asm build/linked.o build/linked.sz build/linked.alloc $(MAIN_ASM_INCLUDES)
 	$(ARMIPS) $(ARMIPS_FLAGS) main.asm -definelabel allocation `cat build/linked.alloc` -equ allocation_size `cat build/linked.sz`
 
-wow:
-	@echo $(SIZE)
-
 -include $(SRC_FILES:src/%.c=build/src/%.d)
