@@ -7,19 +7,23 @@ from pathlib import Path
 integer = wraps(int)(partial(int, base=0))
 
 def find_free_space(*, rom, needed_bytes, start_at=0):
-    start_at &= 0x1FFFFFF
+    start_at &= 0x01FFFFFF
 
-    # round needed_bytes up to next multiple of 4
-    # if it is already a multiple of 4, it is left as-is
-    rounded = (needed_bytes + 3) & ~3
+    # this adds 8 and then rounds up to a multiple of 4
+    # e.g. 1 -> 12 because 12 is the next multiple of 4 above 1+8
+    # e.g. 4 -> 12 because 4+8 is already a multiple of 4
+    adjusted = (needed_bytes + 11) & ~3
 
-    needle = b"\xff" * rounded
+    needle = b"\xff" * adjusted
     pos = rom.find(needle, start_at)
 
     while pos & 0b11 != 0 and pos != -1:
         pos = rom.find(needle, pos + 1)
 
-    return pos | 0x08000000
+    if pos == -1:
+        return -1
+
+    return (pos + 4) | 0x08000000
 
 def main(args=None):
     argparser = ArgumentParser(description="Locates free space inside a GBA ROM.")
