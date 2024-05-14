@@ -50,7 +50,7 @@ md5: test.gba
 # ------------------------------------------------------------------------------
 
 build/linked.sz: build/linked.o
-	echo "`$(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}'` + 8" | bc > "$@"
+	$(SIZE) $(SIZEFLAGS) build/linked.o | awk 'FNR == 2 {print $$4}' > "$@"
 
 build/src/%.o: src/%.c charmap.txt
 	@mkdir -p build/src
