@@ -44,8 +44,11 @@ all: test.gba
 clean:
 	rm -rf build test.gba test.sym $(CLEANABLE_FILES)
 
-md5: test.gba
-	@md5sum test.gba
+md5: test.md5
+	@cat test.md5
+
+test.md5: test.gba
+	md5sum "$<" > "$@"
 
 # ------------------------------------------------------------------------------
 

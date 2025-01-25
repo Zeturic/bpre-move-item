@@ -59,6 +59,9 @@ Temporary Items
 *.stackdump
 *.ss*
 *.exe
+*.md5
 
 build
 obj
+
+GNUmakefile

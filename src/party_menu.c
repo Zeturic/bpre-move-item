@@ -19,7 +19,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
     u16 item1, item2;
     u8 buffer[100];
 
-    if (gPaletteFade.active || some_other_kind_of_link_test())
+    if (gPaletteFade.active || MenuHelpers_ShouldWaitForLinkRecv())
         return;
 
     switch (PartyMenuButtonHandler(&gPartyMenu.slotId2))
@@ -93,7 +93,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
         AnimatePartySlot(gPartyMenu.slotId, 1);
 
         // return to the main party menu
-        schedule_bg_copy_tilemap_to_vram(2);
+        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
         break;
     }
@@ -130,7 +130,7 @@ void CursorCb_MoveItem(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
 
         // return to the main party menu
-        schedule_bg_copy_tilemap_to_vram(2);
+        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
 }
